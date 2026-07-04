@@ -556,13 +556,12 @@
 
   // ── Set up header pixel logo ──
   var hdrPxs = pixelsOf('header-pixel'); hideAll(hdrPxs);
-  var hdrState = startFlicker(hdrPxs, {
-    count: [5, 5], on: [400, 600], gap: [300, 500], idle: [400, 500],
-    keepOpacity: true,
-    color: function () {
+  var hdrState = {
+    hovered: false,
+    getColor: function () {
       return document.body.classList.contains('iact-open') ? '#FFDD1A' : '#FF2200';
     }
-  });
+  };
   attachHoverSweep(document.getElementById('header-pixel'), hdrPxs, hdrState, true);
 
   // ── Base video logo: reveal animation (shared with header) ──
@@ -586,37 +585,14 @@
   // Expose for the intro typewriter
   window._shuffledReveal = shuffledReveal;
 
-  // ── City cycling in header: BERLIN → ROME → MILAN ──
-  var cityEl = document.getElementById('header-city');
-  if (cityEl) {
-    var cities = ['BERLIN', 'ROME', 'MILAN'];
-    var durations = [5000, 1400, 1400];
-    var idx = 0;
-
-    function show(i) {
-      var fill = cities[i] === 'BERLIN' ? '#FF2200' : '#000';
-      cityEl.innerHTML = buildSVG(cities[i], { cls: 'cpx', fill: fill, opacity: 0 });
-      shuffledReveal(Array.from(cityEl.querySelectorAll('.cpx')), 10);
-    }
-    function next() {
-      setTimeout(function () {
-        Array.from(cityEl.querySelectorAll('.cpx'))
-          .forEach(function (el) { el.setAttribute('opacity', '0'); });
-        setTimeout(function () {
-          idx = (idx + 1) % cities.length;
-          show(idx); next();
-        }, 300);
-      }, durations[idx]);
-    }
-    show(0); next();
-  }
-
   // ── Project card pixel names ──
   var CARD_NAMES = [
-    { sel: '.js-open-pronap',   text: 'PRO NAP' },
-    { sel: '.js-open-pkit',     text: 'P.KIT' },
-    { sel: '.js-open-interact', text: 'INTERACT' },
-    { sel: '.js-open-tolean',   text: 'TOLEAN' }
+    { sel: '.js-open-vilya',      text: 'VILYA' },
+    { sel: '.js-open-flea',       text: 'FLEA' },
+    { sel: '.js-open-pronap',     text: 'PRO NAP' },
+    { sel: '.js-open-pkit',       text: 'P.KIT' },
+    { sel: '.js-open-interact',   text: 'INTERACT' },
+    { sel: '.js-open-tolean',     text: 'TOLEAN' }
   ];
   CARD_NAMES.forEach(function (item) {
     document.querySelectorAll(item.sel).forEach(function (card) {
@@ -628,13 +604,29 @@
     });
   });
 
+  // ── Vilya card NEW badge ──
+  var vilyaNewBadge = document.getElementById('vilya-card-new-badge');
+  if (vilyaNewBadge) {
+    vilyaNewBadge.innerHTML = buildSVG('NEW', { fill: '#FF2200' });
+  }
+
+  // ── New project card NEW badge ──
+  var newProjectBadge = document.getElementById('new-project-new-badge');
+  if (newProjectBadge) {
+    newProjectBadge.innerHTML = buildSVG('COMING SOON', { fill: '#FF2200' });
+  }
+
   // ── Header hero/scroll mode toggle ──
   var header = document.getElementById('main-header');
   var pageScroll = document.getElementById('page-scroll');
   if (pageScroll && header) {
-    pageScroll.addEventListener('scroll', function () {
-      var threshold = window.innerHeight * 0.8;
-      header.classList.toggle('hero-nav', pageScroll.scrollTop <= threshold);
-    }, { passive: true });
+    function syncHeroNav() {
+      var threshold = window.innerHeight;
+      var isHero = pageScroll.scrollTop < threshold;
+      header.classList.toggle('hero-nav', isHero);
+      document.body.classList.toggle('hero-nav-active', isHero);
+    }
+    syncHeroNav();
+    pageScroll.addEventListener('scroll', syncHeroNav, { passive: true });
   }
 })();

@@ -58,7 +58,7 @@
     var MAX_LEN      = 4.0;
 
     var WEIGHT_STEPS  = cfg.weightSteps  || [0.08, 0.09, 0.10, 0.11, 0.13, 0.16, 0.20, 0.26, 0.33, 0.42];
-    var OPACITY_STEPS = cfg.opacitySteps || [0.01, 0.01, 0.02, 0.03, 0.05, 0.10, 0.16, 0.22, 0.28, 0.30];
+    var OPACITY_STEPS = cfg.opacitySteps || [0.01, 0.01, 0.01, 0.02, 0.04, 0.07, 0.11, 0.15, 0.19, 0.22];
     var SOFT_CLEAR    = cfg.softClear != null ? cfg.softClear : 0.16;
 
     var MOUSE_RADIUS = 180, MOUSE_R2 = MOUSE_RADIUS * MOUSE_RADIUS, MOUSE_STRENGTH = 0.88;

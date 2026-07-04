@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VILYA — Liquid Halftone Motion (Version B)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style-b.css">
+</head>
+<body>
+
+  <!-- Metallic chrome filter (dark mode — light chrome on dark bg) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0">
+    <defs>
+      <filter id="metallic" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#d0d0d0" result="base"/>
+        <feComposite in="base" in2="SourceAlpha" operator="in" result="shape"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur1"/>
+        <feOffset in="blur1" dx="-1.5" dy="-1.5" result="offsetHi"/>
+        <feComposite in="SourceAlpha" in2="offsetHi" operator="out" result="hiEdge"/>
+        <feFlood flood-color="#ffffff" flood-opacity="0.85" result="hiColor"/>
+        <feComposite in="hiColor" in2="hiEdge" operator="in" result="highlight"/>
+        <feOffset in="blur1" dx="1.5" dy="1.5" result="offsetSh"/>
+        <feComposite in="SourceAlpha" in2="offsetSh" operator="out" result="shEdge"/>
+        <feFlood flood-color="#000000" flood-opacity="0.5" result="shColor"/>
+        <feComposite in="shColor" in2="shEdge" operator="in" result="shadow"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="specBlur"/>
+        <feSpecularLighting in="specBlur" surfaceScale="5" specularConstant="1.8" specularExponent="20" result="specLight">
+          <fePointLight x="-100" y="-200" z="350"/>
+        </feSpecularLighting>
+        <feComposite in="specLight" in2="SourceAlpha" operator="in" result="specClipped"/>
+        <feMerge>
+          <feMergeNode in="shape"/>
+          <feMergeNode in="highlight"/>
+          <feMergeNode in="shadow"/>
+          <feMergeNode in="specClipped"/>
+        </feMerge>
+        <feComposite in2="SourceAlpha" operator="in"/>
+      </filter>
+
+      <!-- Metallic filter (light mode — dark chrome on light bg) -->
+      <filter id="metallic-light" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#303030" result="base"/>
+        <feComposite in="base" in2="SourceAlpha" operator="in" result="shape"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur1"/>
+        <feOffset in="blur1" dx="-1.5" dy="-1.5" result="offsetHi"/>
+        <feComposite in="SourceAlpha" in2="offsetHi" operator="out" result="hiEdge"/>
+        <feFlood flood-color="#666666" flood-opacity="0.7" result="hiColor"/>
+        <feComposite in="hiColor" in2="hiEdge" operator="in" result="highlight"/>
+        <feOffset in="blur1" dx="1.5" dy="1.5" result="offsetSh"/>
+        <feComposite in="SourceAlpha" in2="offsetSh" operator="out" result="shEdge"/>
+        <feFlood flood-color="#000000" flood-opacity="0.6" result="shColor"/>
+        <feComposite in="shColor" in2="shEdge" operator="in" result="shadow"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="specBlur"/>
+        <feSpecularLighting in="specBlur" surfaceScale="4" specularConstant="1.2" specularExponent="25" result="specLight">
+          <fePointLight x="-100" y="-200" z="350"/>
+        </feSpecularLighting>
+        <feComposite in="specLight" in2="SourceAlpha" operator="in" result="specClipped"/>
+        <feMerge>
+          <feMergeNode in="shape"/>
+          <feMergeNode in="highlight"/>
+          <feMergeNode in="shadow"/>
+          <feMergeNode in="specClipped"/>
+        </feMerge>
+        <feComposite in2="SourceAlpha" operator="in"/>
+      </filter>
+
+      <!-- Metallic for headings (dark) — scaled down from logo -->
+      <filter id="metallic-heading" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#d0d0d0" result="base"/>
+        <feComposite in="base" in2="SourceAlpha" operator="in" result="shape"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur1"/>
+        <feOffset in="blur1" dx="-0.8" dy="-0.8" result="offsetHi"/>
+        <feComposite in="SourceAlpha" in2="offsetHi" operator="out" result="hiEdge"/>
+        <feFlood flood-color="#ffffff" flood-opacity="0.75" result="hiColor"/>
+        <feComposite in="hiColor" in2="hiEdge" operator="in" result="highlight"/>
+        <feOffset in="blur1" dx="0.8" dy="0.8" result="offsetSh"/>
+        <feComposite in="SourceAlpha" in2="offsetSh" operator="out" result="shEdge"/>
+        <feFlood flood-color="#000000" flood-opacity="0.4" result="shColor"/>
+        <feComposite in="shColor" in2="shEdge" operator="in" result="shadow"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="specBlur"/>
+        <feSpecularLighting in="specBlur" surfaceScale="3" specularConstant="1.4" specularExponent="25" result="specLight">
+          <fePointLight x="-100" y="-200" z="350"/>
+        </feSpecularLighting>
+        <feComposite in="specLight" in2="SourceAlpha" operator="in" result="specClipped"/>
+        <feMerge>
+          <feMergeNode in="shape"/>
+          <feMergeNode in="highlight"/>
+          <feMergeNode in="shadow"/>
+          <feMergeNode in="specClipped"/>
+        </feMerge>
+        <feComposite in2="SourceAlpha" operator="in"/>
+      </filter>
+
+      <!-- Metallic for headings (light) -->
+      <filter id="metallic-heading-light" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#303030" result="base"/>
+        <feComposite in="base" in2="SourceAlpha" operator="in" result="shape"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1.2" result="blur1"/>
+        <feOffset in="blur1" dx="-0.8" dy="-0.8" result="offsetHi"/>
+        <feComposite in="SourceAlpha" in2="offsetHi" operator="out" result="hiEdge"/>
+        <feFlood flood-color="#666666" flood-opacity="0.6" result="hiColor"/>
+        <feComposite in="hiColor" in2="hiEdge" operator="in" result="highlight"/>
+        <feOffset in="blur1" dx="0.8" dy="0.8" result="offsetSh"/>
+        <feComposite in="SourceAlpha" in2="offsetSh" operator="out" result="shEdge"/>
+        <feFlood flood-color="#000000" flood-opacity="0.5" result="shColor"/>
+        <feComposite in="shColor" in2="shEdge" operator="in" result="shadow"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1.8" result="specBlur"/>
+        <feSpecularLighting in="specBlur" surfaceScale="2.5" specularConstant="0.9" specularExponent="30" result="specLight">
+          <fePointLight x="-100" y="-200" z="350"/>
+        </feSpecularLighting>
+        <feComposite in="specLight" in2="SourceAlpha" operator="in" result="specClipped"/>
+        <feMerge>
+          <feMergeNode in="shape"/>
+          <feMergeNode in="highlight"/>
+          <feMergeNode in="shadow"/>
+          <feMergeNode in="specClipped"/>
+        </feMerge>
+        <feComposite in2="SourceAlpha" operator="in"/>
+      </filter>
+
+      <!-- Metallic for body text (dark) — subtle -->
+      <filter id="metallic-body" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#d0d0d0" result="base"/>
+        <feComposite in="base" in2="SourceAlpha" operator="in" result="shape"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="0.6" result="blur1"/>
+        <feOffset in="blur1" dx="-0.4" dy="-0.4" result="offsetHi"/>
+        <feComposite in="SourceAlpha" in2="offsetHi" operator="out" result="hiEdge"/>
+        <feFlood flood-color="#ffffff" flood-opacity="0.6" result="hiColor"/>
+        <feComposite in="hiColor" in2="hiEdge" operator="in" result="highlight"/>
+        <feOffset in="blur1" dx="0.4" dy="0.4" result="offsetSh"/>
+        <feComposite in="SourceAlpha" in2="offsetSh" operator="out" result="shEdge"/>
+        <feFlood flood-color="#000000" flood-opacity="0.3" result="shColor"/>
+        <feComposite in="shColor" in2="shEdge" operator="in" result="shadow"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="specBlur"/>
+        <feSpecularLighting in="specBlur" surfaceScale="2" specularConstant="1" specularExponent="30" result="specLight">
+          <fePointLight x="-100" y="-200" z="350"/>
+        </feSpecularLighting>
+        <feComposite in="specLight" in2="SourceAlpha" operator="in" result="specClipped"/>
+        <feMerge>
+          <feMergeNode in="shape"/>
+          <feMergeNode in="highlight"/>
+          <feMergeNode in="shadow"/>
+          <feMergeNode in="specClipped"/>
+        </feMerge>
+        <feComposite in2="SourceAlpha" operator="in"/>
+      </filter>
+
+      <!-- Metallic for body text (light) — subtle -->
+      <filter id="metallic-body-light" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+        <feFlood flood-color="#303030" result="base"/>
+        <feComposite in="base" in2="SourceAlpha" operator="in" result="shape"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="0.6" result="blur1"/>
+        <feOffset in="blur1" dx="-0.4" dy="-0.4" result="offsetHi"/>
+        <feComposite in="SourceAlpha" in2="offsetHi" operator="out" result="hiEdge"/>
+        <feFlood flood-color="#666666" flood-opacity="0.5" result="hiColor"/>
+        <feComposite in="hiColor" in2="hiEdge" operator="in" result="highlight"/>
+        <feOffset in="blur1" dx="0.4" dy="0.4" result="offsetSh"/>
+        <feComposite in="SourceAlpha" in2="offsetSh" operator="out" result="shEdge"/>
+        <feFlood flood-color="#000000" flood-opacity="0.4" result="shColor"/>
+        <feComposite in="shColor" in2="shEdge" operator="in" result="shadow"/>
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="specBlur"/>
+        <feSpecularLighting in="specBlur" surfaceScale="1.5" specularConstant="0.7" specularExponent="35" result="specLight">
+          <fePointLight x="-100" y="-200" z="350"/>
+        </feSpecularLighting>
+        <feComposite in="specLight" in2="SourceAlpha" operator="in" result="specClipped"/>
+        <feMerge>
+          <feMergeNode in="shape"/>
+          <feMergeNode in="highlight"/>
+          <feMergeNode in="shadow"/>
+          <feMergeNode in="specClipped"/>
+        </feMerge>
+        <feComposite in2="SourceAlpha" operator="in"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <section id="hero">
+    <!-- LAYER 1 · halftone wave field -->
+    <canvas id="halftone" aria-hidden="true"></canvas>
+
+    <!-- LAYER 2 · liquid logo (SVGs are fetched + injected here at runtime) -->
+    <main id="stage">
+      <div id="logo-lockup">
+        <div id="logo-mount" role="img" aria-label="Vilya logo, liquid motion"></div>
+        <img src="logos/SVG/viliya logo text white.svg" alt="VILYA" class="logo-text" id="logo-text">
+      </div>
+    </main>
+
+    <!-- HUD -->
+    <header class="hud hud--tl"></header>
+    <div class="hud hud--tr">
+      <svg class="hud__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 21s-7-5.686-7-11a7 7 0 1 1 14 0c0 5.314-7 11-7 11Z" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      San&nbsp;Francisco,&nbsp;CA
+    </div>
+    <div class="hud hud--bl"></div>
+  </section>
+
+  <!-- Section 2: Context + Brief -->
+  <section id="context" class="content-section">
+    <div class="content__inner">
+      <h2 class="content__heading">Context</h2>
+      <p class="content__body">Vilya, a Silicon Valley biotech startup, wanted to refresh its brand identity. A friend of mine working there asked me to run a quick design session and inject some ideas for their new direction. I accepted the challenge as an exercise in thinking simply and moving fast — delivering ideas in a very short amount of time without knowing much about the company I was asked to design for. The information and constraints were minimal, so the brief was open and lean.</p>
+      <h2 class="content__heading content__heading--brief">Brief</h2>
+      <p class="content__body">Create a new logo draft for Vilya, including selection of typography, colors, and key visual (<a href="https://vilyatx.com" target="_blank" rel="noopener">vilyatx.com</a>)</p>
+    </div>
+  </section>
+
+  <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light / night mode">
+    <span class="theme-toggle__track">
+      <span class="theme-toggle__thumb">
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </span>
+  </button>
+
+  <!-- classic scripts, in dependency order: the page also runs from file:// -->
+  <script src="js/config-b.js"></script>
+  <script src="js/halftone.js"></script>
+  <script src="js/gooLogo.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    (function(){
+      var isCard = new URLSearchParams(location.search).get('card') === '1';
+
+      // Pixel font completo
+      var FONT = {
+        'N':['10001','11001','10101','10011','10001'],'I':['01110','00100','00100','00100','01110'],
+        'C':['01110','10000','10000','10000','01110'],'V':['10001','10001','01010','01010','00100'],
+        'E':['11111','10000','11110','10000','11111'],'L':['10000','10000','10000','10000','11111'],
+        'T':['11111','00100','00100','00100','00100'],'R':['11110','10001','11110','10100','10010'],
+        'O':['01110','10001','10001','10001','01110'],'M':['10001','11011','10101','10001','10001'],
+        'A':['01110','10001','11111','10001','10001'],'B':['11110','10001','11110','10001','11110'],
+        'P':['11110','10001','11110','10000','10000'],'K':['10010','10100','11000','10100','10010'],
+        'H':['10001','10001','11111','10001','10001'],'D':['11110','10001','10001','10001','11110'],
+        'F':['11111','10000','11110','10000','10000'],'Y':['10001','01010','00100','00100','00100'],
+        'U':['10001','10001','10001','10001','01110'],'J':['00111','00010','00010','10010','01100'],
+        'G':['01110','10000','10111','10001','01110'],'S':['01111','10000','01110','00001','11110'],
+        'W':['10001','10001','10101','11011','10001'],'X':['10001','01010','00100','01010','10001'],
+        'Z':['11111','00010','00100','01000','11111'],'.':['00000','00000','00000','00110','00110']
+      };
+      var SQ=2,GAP=1,STEP=SQ+GAP,H=STEP*5-GAP;
+      function buildPx(text,fill){
+        fill=fill||'#fff';
+        var rects=[],x=0;
+        for(var i=0;i<text.length;i++){
+          var ch=text[i];
+          if(ch===' '){x+=STEP*3;continue;}
+          var bmp=FONT[ch]; if(!bmp) continue;
+          for(var r=0;r<5;r++) for(var c=0;c<5;c++)
+            if(bmp[r][c]==='1') rects.push('<rect x="'+(x+c*STEP)+'" y="'+(r*STEP)+'" width="'+SQ+'" height="'+SQ+'" fill="'+fill+'"/>');
+          x+=STEP*5+STEP;
+        }
+        var W=x-STEP;
+        return '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">'+rects.join('')+'</svg>';
+      }
+
+      if (isCard) {
+        // Card mode: mostra solo pittogramma + halftone, nascondi testo e UI
+        var s = document.createElement('style');
+        s.textContent = [
+          '#logo-text,.hud,#context,#content,#theme-toggle{display:none!important;}',
+          '#logo-lockup{transform:none;}',
+          '#logo-mount{width:min(80vmin,480px);top:0;}'
+        ].join('');
+        document.head.appendChild(s);
+      } else {
+        // Fullscreen: NIC VELTRONI pixel + frase lampeggiante sotto Brief
+        var s2 = document.createElement('style');
+        s2.textContent =
+          '#vilya-nic-brand{position:fixed;top:0;left:24px;height:52px;z-index:200;' +
+          'display:flex;align-items:center;cursor:pointer;}' +
+          '#vilya-nic-brand svg{height:9px;width:auto;display:block;}' +
+          '.hud--tr{display:flex;align-items:center;height:52px;top:0!important;}' +
+          '#vilya-wip{display:flex;justify-content:center;padding:40px 0 48px;}' +
+          '#vilya-wip svg{height:9px;width:auto;display:block;animation:vilya-blink 1.4s steps(1,end) infinite;}' +
+          '@keyframes vilya-blink{0%,100%{opacity:1}50%{opacity:0}}' +
+          'body.theme-light #vilya-wip svg rect{fill:#000!important;}';
+        document.head.appendChild(s2);
+
+        // Brand NIC VELTRONI
+        var brand = document.createElement('div');
+        brand.id = 'vilya-nic-brand';
+        brand.innerHTML = buildPx('NIC VELTRONI', '#fff');
+        brand.addEventListener('click', function(){
+          window.parent.postMessage({ action: 'close-vilya' }, '*');
+        });
+        document.body.appendChild(brand);
+
+        // Aggiorna colore brand al cambio tema
+        function updateBrandColor(){
+          var isLight = document.body.classList.contains('theme-light');
+          brand.innerHTML = buildPx('NIC VELTRONI', isLight ? '#000' : '#fff');
+        }
+        new MutationObserver(updateBrandColor).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+        // Frase lampeggiante sotto Brief
+        var wip = document.createElement('div');
+        wip.id = 'vilya-wip';
+        wip.innerHTML = buildPx('CONTENT AND PROCESS NOTES COMING SOON', '#fff');
+        document.body.appendChild(wip);
+      }
+    })();
+  </script>
+</body>
+</html>

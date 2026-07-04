@@ -16,6 +16,7 @@
     });
     document.body.classList.add('panel-open');
     document.getElementById('main-header').classList.remove('hero-nav');
+    document.body.classList.remove('hero-nav-active');
     setTimeout(function () {
       window._contactPixelReveal && window._contactPixelReveal();
     }, 100);

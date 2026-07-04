@@ -51,7 +51,7 @@
         var ty = rect.top  + rect.height / 2 - vh / 2;
         var sx = rect.width / vw, sy = rect.height / vh;
 
-        cfg.backBtn.style.cssText = 'cursor:pointer;opacity:0;pointer-events:none;';
+        if (cfg.backBtn) cfg.backBtn.style.cssText = 'cursor:pointer;opacity:0;pointer-events:none;';
         if (cfg.labelWrap)  cfg.labelWrap.style.opacity = '0';
         if (cfg.scrollWrap) cfg.scrollWrap.style.opacity = '0';
 
@@ -63,8 +63,7 @@
 
         setTimeout(function () {
           if (!isOpen) return;
-          cfg.backBtn.style.pointerEvents = 'all';
-          fadeUI(cfg.backBtn, 1);
+          if (cfg.backBtn) { cfg.backBtn.style.pointerEvents = 'all'; fadeUI(cfg.backBtn, 1); }
           if (cfg.labelWrap) {
             cfg.labelWrap.style.pointerEvents = 'auto';
             fadeUI(cfg.labelWrap, 1, function () {
@@ -80,7 +79,7 @@
         // Direct open (no animation source) — used by hash-restore and cross-panel jumps
         cfg.panel.style.transform = 'translate(0,0) scale(1,1)';
         cfg.panel.style.opacity = '1';
-        cfg.backBtn.style.cssText = 'cursor:pointer;opacity:1;pointer-events:all;';
+        if (cfg.backBtn) cfg.backBtn.style.cssText = 'cursor:pointer;opacity:1;pointer-events:all;';
         if (cfg.labelWrap) {
           cfg.labelWrap.style.opacity = '1';
           cfg.labelWrap.style.pointerEvents = 'auto';
@@ -116,7 +115,7 @@
     }
 
     // ── Back button click ──
-    cfg.backBtn.addEventListener('click', function () {
+    if (cfg.backBtn) cfg.backBtn.addEventListener('click', function () {
       cfg.backBtn.animate([
         { transform: 'translateX(0px)' },
         { transform: 'translateX(-8px)' },
@@ -397,6 +396,7 @@
     else if (pkit.isOpen())    pkit.close();
     else if (iact.isOpen())    iact.close();
     else if (tolean.isOpen())  tolean.close();
+    else if (flea.isOpen())    flea.close();
     else window.location.href = window.location.pathname;
   });
 
@@ -406,12 +406,12 @@
   var navWork    = document.getElementById('nav-work');
   var pageScroll = document.getElementById('page-scroll');
   var carouselEl = document.getElementById('carousel-section');
+  function scrollToCarousel() {
+    if (pageScroll && carouselEl) pageScroll.scrollTo({ top: carouselEl.offsetTop, behavior: 'smooth' });
+  }
   if (navWork && pageScroll && carouselEl) {
     navWork.addEventListener('click', function (e) {
       e.preventDefault();
-      function scrollToCarousel() {
-        pageScroll.scrollTo({ top: carouselEl.offsetTop, behavior: 'smooth' });
-      }
       if (proNap.isOpen()) {
         proNap.close(); setTimeout(scrollToCarousel, 550);
       } else if (pkit.isOpen()) {
@@ -420,6 +420,8 @@
         iact.close(); setTimeout(scrollToCarousel, 550);
       } else if (tolean.isOpen()) {
         tolean.close(); setTimeout(scrollToCarousel, 550);
+      } else if (flea.isOpen()) {
+        flea.close(); setTimeout(scrollToCarousel, 550);
       } else if (isAboutOpen) {
         closeAbout(); setTimeout(scrollToCarousel, 450);
       } else if (window._isContactOpen && window._isContactOpen()) {
@@ -429,6 +431,14 @@
       }
     });
   }
+
+  // Messaggio dall'iframe flea → chiudi pannello e vai ai work
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'flea-close-to-work') {
+      flea.close();
+      setTimeout(scrollToCarousel, 550);
+    }
+  });
 
   // Resolve a media element's source, accounting for lazy-loaded data-src.
   function resolveSrc(el) {
@@ -561,10 +571,58 @@
   });
 
   // ══════════════════════════════════════════════
+  //  Flea Motion panel (iframe)
+  // ══════════════════════════════════════════════
+  var fleaPanel = document.getElementById('flea-panel');
+  var fleaFrame = document.getElementById('flea-frame');
+  var flea = makePanel({
+    panel:   fleaPanel,
+    hash:    'flea',
+    onAfterOpen: function () {
+      document.body.classList.add('flea-open');
+      if (fleaFrame) fleaFrame.src = 'flea motion/index.html';
+    },
+    onClose: function () {
+      document.body.classList.remove('flea-open');
+      if (fleaFrame) fleaFrame.src = '';
+    }
+  });
+
+  // ══════════════════════════════════════════════
+  //  Vilya panel (iframe)
+  // ══════════════════════════════════════════════
+  var vilyaPanel = document.getElementById('vilya-panel');
+  var vilyaFrame = document.getElementById('vilya-frame');
+  var vilya = makePanel({
+    panel:   vilyaPanel,
+    hash:    'vilya',
+    onAfterOpen: function () {
+      document.body.classList.add('vilya-open');
+      if (vilyaFrame) vilyaFrame.src = 'Vilya motion/index-b.html';
+    },
+    onClose: function () {
+      document.body.classList.remove('vilya-open');
+      if (vilyaFrame) vilyaFrame.src = '';
+    }
+  });
+
+  window.addEventListener('message', function (e) {
+    if (e.data && e.data.action === 'close-vilya' && vilya.isOpen()) {
+      vilya.close();
+      setTimeout(function () {
+        if (pageScroll && carouselEl) {
+          pageScroll.scrollTo({ top: carouselEl.offsetTop, behavior: 'smooth' });
+        }
+      }, 550);
+    }
+  });
+
+  // ══════════════════════════════════════════════
   //  Mobile: swipe-up at bottom → next project
   // ══════════════════════════════════════════════
   if (IS_MOBILE) {
     var nextMap = [
+      { panel: vilya,  scroller: null,                                        next: function () { iact.open(); } },
       { panel: iact,   scroller: document.getElementById('iact-scroller'),   next: function () { pkit.open(); } },
       { panel: pkit,   scroller: document.getElementById('pkit-scroller'),   next: function () { proNap.open(); } },
       { panel: proNap, scroller: document.getElementById('hero-scroller'),   next: function () { tolean.open(); } },
@@ -608,6 +666,7 @@
     isAboutOpen = true;
     document.body.classList.add('panel-open');
     document.getElementById('main-header').classList.remove('hero-nav');
+    document.body.classList.remove('hero-nav-active');
     window._aboutPixelHide && window._aboutPixelHide();
     aboutPanel.style.display = 'block';
     aboutPanel.scrollTop = 0;
@@ -717,10 +776,20 @@
   if (tbWork) {
     tbWork.addEventListener('click', function (e) {
       e.preventDefault();
-      if (proNap.isOpen())       proNap.close();
-      else if (pkit.isOpen())    pkit.close();
-      else if (iact.isOpen())    iact.close();
-      else if (tolean.isOpen())  tolean.close();
+      function goToWork() {
+        if (pageScroll && carouselEl) {
+          pageScroll.scrollTo({ top: carouselEl.offsetTop, behavior: 'smooth' });
+        }
+      }
+      if (flea.isOpen())         { flea.close();   setTimeout(goToWork, 550); }
+      else if (vilya.isOpen())   { vilya.close();  setTimeout(goToWork, 550); }
+      else if (proNap.isOpen())  { proNap.close(); setTimeout(goToWork, 550); }
+      else if (pkit.isOpen())    { pkit.close();   setTimeout(goToWork, 550); }
+      else if (iact.isOpen())    { iact.close();   setTimeout(goToWork, 550); }
+      else if (tolean.isOpen())  { tolean.close(); setTimeout(goToWork, 550); }
+      else if (isAboutOpen)      { closeAbout();   setTimeout(goToWork, 450); }
+      else if (window._isContactOpen && window._isContactOpen()) { window._closeContact(goToWork); }
+      else goToWork();
     });
   }
 
@@ -782,7 +851,9 @@
   // ── Ripristina il pannello dall'URL hash al refresh ──
   (function () {
     var hash = location.hash.replace('#', '');
-    if      (hash === 'pronap')   proNap.open();
+    if      (hash === 'flea')     flea.open();
+    else if (hash === 'vilya')    vilya.open();
+    else if (hash === 'pronap')   proNap.open();
     else if (hash === 'pkit')     pkit.open();
     else if (hash === 'interact') iact.open();
     else if (hash === 'tolean')   tolean.open();
@@ -796,7 +867,9 @@
     if (!a) return;
     e.preventDefault();
     var target = null;
-    if      (a.classList.contains('js-open-pronap'))    target = proNap;
+    if      (a.classList.contains('js-open-flea'))       target = flea;
+    else if (a.classList.contains('js-open-vilya'))     target = vilya;
+    else if (a.classList.contains('js-open-pronap'))    target = proNap;
     else if (a.classList.contains('js-open-pkit'))      target = pkit;
     else if (a.classList.contains('js-open-interact') || a.classList.contains('js-open-iact')) target = iact;
     else if (a.classList.contains('js-open-tolean'))    target = tolean;
@@ -804,7 +877,9 @@
 
     function openTarget() { target.open(a); }
 
-    if      (proNap.isOpen())  { proNap.closeInstant();  target.open(null); }
+    if      (flea.isOpen())    { flea.closeInstant();    target.open(null); }
+    else if (vilya.isOpen())   { vilya.closeInstant();   target.open(null); }
+    else if (proNap.isOpen())  { proNap.closeInstant();  target.open(null); }
     else if (pkit.isOpen())    { pkit.closeInstant();    target.open(null); }
     else if (iact.isOpen())    { iact.closeInstant();    target.open(null); }
     else if (tolean.isOpen())  { tolean.closeInstant();  target.open(null); }

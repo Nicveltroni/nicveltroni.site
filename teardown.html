@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIC VELTRONI — SEALED UNIT NV-2026 / REV.04</title>
+  <meta name="description" content="Nic Veltroni — Product Designer. A portfolio you don't browse: you take it apart.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="teardown.css">
+</head>
+
+<body>
+
+  <!-- ═══ TOP RAIL ═══ -->
+  <header id="rail">
+    <a class="rail-id" href="#unit"><span class="rail-dot"></span>VELTRONI.WORK <em>REV.04</em></a>
+    <nav class="rail-nav">
+      <button class="rail-link" data-goto="#chassis">COMPONENTS</button>
+      <button class="rail-link" data-goto="#operator">OPERATOR</button>
+      <button class="rail-link" data-goto="#service">SERVICE</button>
+      <button class="rail-link rail-link--manual" id="manual-toggle" aria-pressed="false" title="Strip the art direction. Plain document.">MANUAL</button>
+      <button id="minimap-btn" aria-haspopup="true" aria-expanded="false" aria-label="Exploded view map">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <rect x="3" y="3" width="10" height="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <rect x="15" y="3" width="6" height="7" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <rect x="3" y="13" width="7" height="8" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <rect x="12" y="13" width="9" height="8" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ═══ MINIMAP / EXPLODED NAV ═══ -->
+  <div id="minimap" hidden>
+    <p class="mm-title">EXPLODED VIEW — NV-2026</p>
+    <button class="mm-part" data-goto="#unit"><span>00</span> HOUSING / SEALED UNIT</button>
+    <button class="mm-part" data-open="interact"><span>01</span> INTERACT — MAINBOARD</button>
+    <button class="mm-part" data-open="pkit"><span>02</span> P.KIT — SERVICE MODULE</button>
+    <button class="mm-part" data-open="pronap"><span>03</span> PRO NAP — DAUGHTERBOARD</button>
+    <button class="mm-part" data-open="tolean"><span>04</span> TOLEAN — SOCKETED CHIP</button>
+    <button class="mm-part" data-goto="#operator"><span>05</span> OPERATOR — N. VELTRONI</button>
+    <button class="mm-part" data-goto="#service"><span>06</span> SERVICE / REQUEST</button>
+    <button class="mm-part" data-goto="#underside"><span>—</span> UNDERSIDE</button>
+  </div>
+
+  <!-- ═══ 00 · SEALED UNIT HERO ═══ -->
+  <section id="unit" aria-label="Sealed unit">
+    <div class="unit-sticky" id="unit-sticky">
+
+      <div class="unit-stage">
+        <!-- glimpse of the chassis behind the housing -->
+        <div class="unit-inside" aria-hidden="true">
+          <div class="ui-glow"></div>
+          <div class="ui-sil ui-sil--1"></div>
+          <div class="ui-sil ui-sil--2"></div>
+          <div class="ui-sil ui-sil--3"></div>
+          <p class="ui-count">4 COMPONENTS DETECTED</p>
+        </div>
+
+        <!-- top half of the casing -->
+        <div class="unit-half unit-top" aria-hidden="true">
+          <div class="unit-face">
+            <video src="assets/nicveltroni-video-intro-portfolio.mp4" autoplay muted playsinline loop preload="none"></video>
+            <div class="unit-face-tint"></div>
+            <div class="unit-etch">
+              <p class="ue-brand">VELTRONI</p>
+              <p class="ue-model">SEALED UNIT · NV-2026 / REV.04</p>
+              <p class="ue-row"><span>CONTENTS</span><span>4 PROJECTS · 1 OPERATOR</span></p>
+              <p class="ue-row"><span>ASSEMBLED</span><span>MILANO → BERLIN · 2023–2026</span></p>
+            </div>
+            <div class="unit-screw unit-screw--tl"></div>
+            <div class="unit-screw unit-screw--tr"></div>
+          </div>
+          <div class="unit-lid-inner"><span>NIC VELTRONI — IF YOU OPEN THINGS, WE'LL GET ALONG.</span></div>
+        </div>
+
+        <!-- bottom half of the casing -->
+        <div class="unit-half unit-bottom" aria-hidden="true">
+          <div class="unit-face unit-face--bottom">
+            <p class="ub-serial">SERIAL Nº NIC-VELTRONI · PRODUCT DESIGNER · 22 YRS</p>
+            <div class="unit-screw unit-screw--bl"></div>
+            <div class="unit-screw unit-screw--br"></div>
+          </div>
+        </div>
+
+        <!-- the seal across the parting line -->
+        <div class="unit-seal" aria-hidden="true">
+          <span>⚠ WARRANTY VOID IF OPENED — PLEASE OPEN</span>
+        </div>
+      </div>
+
+      <p class="unit-instruction" id="unit-instruction">▼&nbsp;&nbsp;PULL — SCROLL TO REMOVE HOUSING&nbsp;&nbsp;▼</p>
+
+      <button id="escape-hatch" data-goto="#chassis">JUST SHOW ME THE WORK →</button>
+    </div>
+
+    <div class="unit-spec-strip" aria-hidden="true">
+      <span>DOC. TD-2026-04</span><span>NIC VELTRONI — PORTFOLIO, TEARDOWN EDITION</span><span>TOLERANCE ±0.01mm / ±VIBES</span>
+    </div>
+  </section>
+
+  <!-- ═══ OPEN CHASSIS — PROJECT BROWSING ═══ -->
+  <section id="chassis" aria-label="Components">
+    <header class="chassis-head">
+      <h1>HOUSING REMOVED.<br>4 COMPONENTS INSTALLED.</h1>
+      <p class="chassis-sub">Components are sized by effort, not by ego. Remove one to inspect it. Broken seals are remembered.</p>
+    </header>
+
+    <div class="board">
+      <svg class="ribbon" viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 380 250 C 520 250 560 520 760 540 S 1040 600 1090 600" fill="none"/>
+        <path d="M 920 180 C 980 320 1000 460 1090 590" fill="none"/>
+      </svg>
+
+      <!-- 01 INTERACT -->
+      <article class="comp comp--iact" data-key="interact" tabindex="0" role="button" aria-label="Open Interact case study">
+        <div class="comp-frame">
+          <img decoding="async" src="assets/interact/hero interact project.webp" alt="Interact — social discovery app">
+          <div class="comp-seal" data-seal>SEALED · QC ✓</div>
+        </div>
+        <div class="comp-silk">
+          <p class="cs-id">NV-01 · MAINBOARD</p>
+          <h2 class="cs-name">INTERACT</h2>
+          <ul class="cs-specs">
+            <li><span>YEAR</span><span>Designed in 2025</span></li>
+            <li><span>DURATION</span><span>24 weeks</span></li>
+            <li><span>TYPE</span><span>App, Startup</span></li>
+            <li><span>SOFTWARE</span><span>Cursor, Figma</span></li>
+            <li><span>SKILLSETS</span><span>Research, Prototyping, Business</span></li>
+          </ul>
+          <p class="cs-extract">EXTRACT →</p>
+        </div>
+      </article>
+
+      <!-- 02 P.KIT -->
+      <article class="comp comp--pkit" data-key="pkit" tabindex="0" role="button" aria-label="Open P.KIT case study">
+        <div class="comp-frame">
+          <img decoding="async" src="assets/pkit/Frame 332.webp" alt="P.KIT — food service kit">
+          <div class="comp-seal" data-seal>SEALED · QC ✓</div>
+        </div>
+        <div class="comp-silk">
+          <p class="cs-id">NV-02 · SERVICE MODULE</p>
+          <h2 class="cs-name">P.KIT</h2>
+          <ul class="cs-specs">
+            <li><span>YEAR</span><span>Designed in 2025</span></li>
+            <li><span>DURATION</span><span>20 weeks</span></li>
+            <li><span>TYPE</span><span>Product and Service</span></li>
+            <li><span>SOFTWARE</span><span>Rhinoceros, Blender, Figma, Adobe Suite</span></li>
+            <li><span>SKILLSETS</span><span>Research, Prototyping, Business</span></li>
+          </ul>
+          <p class="cs-extract">EXTRACT →</p>
+        </div>
+      </article>
+
+      <!-- 03 PRO NAP -->
+      <article class="comp comp--pnap" data-key="pronap" tabindex="0" role="button" aria-label="Open Pro Nap case study">
+        <div class="comp-frame">
+          <img decoding="async" src="assets/pro-nap/zoom in wearly noth.webp" alt="Pro Nap — power nap headset">
+          <div class="comp-seal" data-seal>SEALED · QC ✓</div>
+        </div>
+        <div class="comp-silk">
+          <p class="cs-id">NV-03 · DAUGHTERBOARD</p>
+          <h2 class="cs-name">PRO NAP</h2>
+          <ul class="cs-specs">
+            <li><span>YEAR</span><span>Designed in 2023/2024</span></li>
+            <li><span>DURATION</span><span>12 weeks</span></li>
+            <li><span>TYPE</span><span>Wearable product</span></li>
+            <li><span>SOFTWARE</span><span>Rhinoceros, Figma, Vray, Adobe</span></li>
+            <li><span>SKILLSETS</span><span>Research, CAD, DFM, Prototyping, Rendering, Strategy</span></li>
+          </ul>
+          <p class="cs-extract">EXTRACT →</p>
+        </div>
+      </article>
+
+      <!-- 04 TOLEAN -->
+      <article class="comp comp--tole" data-key="tolean" tabindex="0" role="button" aria-label="Open Tolean case study">
+        <div class="comp-frame">
+          <img decoding="async" src="assets/tolean.webp" alt="Tolean — Arduino boardgame">
+          <div class="comp-seal" data-seal>SEALED · QC ✓</div>
+        </div>
+        <div class="comp-silk">
+          <p class="cs-id">NV-04 · SOCKETED CHIP</p>
+          <h2 class="cs-name">TOLEAN</h2>
+          <ul class="cs-specs">
+            <li><span>YEAR</span><span>Designed in 2024</span></li>
+            <li><span>DURATION</span><span>8 weeks</span></li>
+            <li><span>TYPE</span><span>Tech boardgame</span></li>
+            <li><span>SOFTWARE</span><span>Arduino, Rhinoceros 3D, Keyshot</span></li>
+            <li><span>SKILLSETS</span><span>Prototyping, 3D printing, coding C++</span></li>
+          </ul>
+          <p class="cs-extract">EXTRACT →</p>
+        </div>
+      </article>
+
+      <!-- 05 OPERATOR chip -->
+      <article class="comp comp--oper" data-goto="#operator" tabindex="0" role="button" aria-label="About the operator, Nic Veltroni">
+        <div class="comp-frame comp-frame--oper">
+          <img decoding="async" src="assets/nic foto profilo portfolio.webp" alt="Nic Veltroni">
+        </div>
+        <div class="comp-silk">
+          <p class="cs-id">NV-05 · OPERATOR</p>
+          <h2 class="cs-name">N. VELTRONI</h2>
+          <p class="cs-extract">CALIBRATION CERT. →</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══ BAY 01 · INTERACT ═══ -->
+  <div class="bay" id="bay-interact" role="dialog" aria-modal="true" aria-label="Interact case study" hidden>
+    <div class="bay-gauge" aria-hidden="true">
+      <button data-stratum="housing"><i></i>HOUSING</button>
+      <button data-stratum="mechanism"><i></i>MECHANISM</button>
+      <button data-stratum="circuit"><i></i>CIRCUIT</button>
+      <button data-stratum="signature"><i></i>SIGNATURE</button>
+    </div>
+    <button class="bay-close">⟵ REINSTALL COMPONENT</button>
+    <div class="bay-scroll">
+
+      <section class="stratum stratum--housing" data-stratum="housing">
+        <header class="bay-head">
+          <p class="bh-id">NV-01 · MAINBOARD · EXTRACTED</p>
+          <h2 class="bh-name">INTERACT</h2>
+          <div class="bh-pins"><span>Startup</span><span>UX/UI Design</span><span>Branding</span></div>
+        </header>
+        <figure class="full-art"><img decoding="async" src="assets/interact/Group 632276.webp" alt="Interact" loading="lazy"></figure>
+
+        <div class="pair">
+          <div class="pair-copy">
+            <h3>Interact and connect with people in your Area.</h3>
+            <p>In the feed you are able to see all the people around you <mark>within 50m.</mark></p>
+            <p>We deliberately avoided using a map view. Nearby profiles are presented in <mark>a scrollable feed that orders people by distance.</mark> Scrolling through profiles feels familiar and engaging making the experience more natural. <mark>This design keeps the interface intuitive and welcoming</mark>, encouraging profiles discovery without the pressure of constant geolocation tracking.</p>
+          </div>
+          <div class="pair-media"><video data-src="assets/interact/Interact Ux_Uiinteract ofline online.mp4" muted playsinline loop preload="none"></video></div>
+        </div>
+        <div class="pair pair--flip">
+          <div class="pair-copy">
+            <h3>Select the connections that matter most to you with tailored filters.</h3>
+            <p><mark>Choose connections based on your preferences</mark>, ensuring you interact with the right people. With customizable filters, <mark>you can easily find and connect with individuals who share your interests and goals</mark>, in the places you frequent the most.</p>
+          </div>
+          <div class="pair-media"><video data-src="assets/interact/Interact Ux_Uiinteract filtri.mp4" muted playsinline loop preload="none"></video></div>
+        </div>
+        <div class="pair">
+          <div class="pair-copy">
+            <h3>Showcase your Digital Identity effortlessly.</h3>
+            <p><mark>Bring your Digital Identity with you!</mark> This way can <mark>display all your essential links</mark> in one convenient location. Enhance your visibility. take control of your social presence like never before.</p>
+          </div>
+          <div class="pair-media"><video data-src="assets/interact/Interact Ux_Uiinteract profilo.mp4" muted playsinline loop preload="none"></video></div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--mechanism" data-stratum="mechanism">
+        <h3 class="stratum-label"><span>STRATUM 02</span>MECHANISM — HOW IT WAS MADE</h3>
+        <p class="bench-note">Hundreds of iterations across layout, interaction, and visual detail shaped the final interface. Every screen was revisited multiple times, refining how the feed balances density and readability, how the profile page prioritizes the content that actually drives behavior, how filters improve discovery. The result is a system that absorbed continuous change while keeping its core interaction model intact.</p>
+
+        <div class="bench-row">
+          <figure class="probe"><img decoding="async" src="assets/interact/home ev. 1.webp" alt="Home iteration 1" loading="lazy"><figcaption>ITER. A — FEED v1</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/interact/home ev. 2.webp" alt="Home iteration 2" loading="lazy"><figcaption>ITER. B — FEED v2</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/interact/home ev 3.webp" alt="Home iteration 3" loading="lazy"><figcaption>ITER. C — FEED v3</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/interact/home ev. 4.webp" alt="Home iteration 4" loading="lazy"><figcaption>ITER. D — FEED FINAL</figcaption></figure>
+        </div>
+        <div class="bench-row">
+          <figure class="probe"><img decoding="async" src="assets/interact/Profile ev 1.webp" alt="Profile iteration 1" loading="lazy"><figcaption>PROFILE v1</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/interact/Profile ev 2.webp" alt="Profile iteration 2" loading="lazy"><figcaption>PROFILE v2</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/interact/Profile ev 3.webp" alt="Profile iteration 3" loading="lazy"><figcaption>PROFILE v3</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/interact/Profile ev 4.webp" alt="Profile iteration 4" loading="lazy"><figcaption>PROFILE FINAL</figcaption></figure>
+        </div>
+        <div class="bench-row bench-row--3">
+          <figure class="probe"><img decoding="async" src="assets/interact/filters ev 1.webp" alt="Filters iteration 1" loading="lazy"><figcaption>FILTERS v1</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/interact/filters ev 1-2.webp" alt="Filters iteration 2" loading="lazy"><figcaption>FILTERS v2</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/interact/filters ev 1-1.webp" alt="Filters iteration 3" loading="lazy"><figcaption>FILTERS FINAL</figcaption></figure>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-track">
+            <img decoding="async" src="assets/interact/Karosello Interact/01.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/interact/Karosello Interact/02.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/interact/Karosello Interact/04.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/interact/Karosello Interact/05.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/interact/Karosello Interact/06.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/interact/Karosello Interact/07.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/interact/Karosello Interact/08.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/interact/Karosello Interact/09.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/interact/Karosello Interact/01.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/interact/Karosello Interact/02.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/interact/Karosello Interact/04.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/interact/Karosello Interact/05.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/interact/Karosello Interact/06.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/interact/Karosello Interact/07.webp" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/interact/Karosello Interact/08.webp" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/interact/Karosello Interact/09.webp" alt="" loading="lazy" aria-hidden="true">
+          </div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--circuit" data-stratum="circuit">
+        <h3 class="stratum-label"><span>STRATUM 03</span>CIRCUIT — WHY IT EXISTS</h3>
+        <div class="circuit-brief">
+          <h4>CONCEPT</h4>
+          <p>Interact is a social discovery and networking app. The idea is simple: use your existing social profiles to align your digital identity with your physical presence, sharing who you are in real spaces and seeing who's around you. No dedicated venues, no awkward introductions just the context you need to connect with people nearby who share your same interests and goals, wherever you already are.</p>
+        </div>
+        <div class="circuit-cols">
+          <div class="circuit-col">
+            <p class="cc-callout">WHY THIS EXISTS</p>
+            <p class="cc-orig">Motivation</p>
+            <img decoding="async" src="assets/interact/Frame 377.webp" alt="Motivation" loading="lazy">
+            <p class="cc-cap">We give context for meaningful social interactions to happen in real places, naturally.</p>
+            <p class="cc-text">Interact was born from the desire to meet people who share our same interests and goals, not online and distant, but physically, wherever you are. We just wanted to give indications and more context, without interfering with the real interaction.</p>
+          </div>
+          <div class="circuit-col">
+            <p class="cc-callout">HOW IT WAS PROVEN</p>
+            <p class="cc-orig">Validation and Prototyping</p>
+            <img decoding="async" src="assets/interact/Frame 375.webp" alt="Validation and Prototyping" loading="lazy">
+            <p class="cc-cap">From research to interface, giving shape to the product through continuous iteration.</p>
+            <p class="cc-text">We ran interviews, mapped different user profiles, explored the competitive landscape, built a business model canvas, and iterated the interface multiple times, refining how proximity, identity, and discovery could work together in a single feed.</p>
+          </div>
+          <div class="circuit-col">
+            <p class="cc-callout">WHO PUSHED BACK</p>
+            <p class="cc-orig">Feedback</p>
+            <img decoding="async" src="assets/interact/Frame 376.webp" alt="Feedback" loading="lazy">
+            <p class="cc-cap">Engaging with venture capitals and startup accelerators.</p>
+            <p class="cc-text">Engaging with Italian Founders Fund, Plug and Play, and Zest helped us sharpen the business model, clarify the product positioning, and understand what to prioritize.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--signature" data-stratum="signature">
+        <p class="sig-pre">STRATUM 04 — ENGRAVED INSIDE THE CASE. ONLY PEOPLE WHO OPEN THINGS READ THIS.</p>
+        <blockquote class="sig-text">The fight I picked here was killing the map. Every investor expected pins on a map; we shipped a feed instead, because a map tracks people and a feed introduces them. Twenty-four weeks taught me that the bravest design decision is usually a deletion.</blockquote>
+        <p class="sig-name">— N. Veltroni, 2025</p>
+      </section>
+
+      <nav class="bay-next"><button class="bay-next-btn" data-next="pkit">NEXT COMPONENT: NV-02 · P.KIT →</button><button class="bay-contact js-ticket">FILE A SERVICE REQUEST</button></nav>
+    </div>
+  </div>
+
+  <!-- ═══ BAY 02 · P.KIT ═══ -->
+  <div class="bay" id="bay-pkit" role="dialog" aria-modal="true" aria-label="P.KIT case study" hidden>
+    <div class="bay-gauge" aria-hidden="true">
+      <button data-stratum="housing"><i></i>HOUSING</button>
+      <button data-stratum="mechanism"><i></i>MECHANISM</button>
+      <button data-stratum="circuit"><i></i>CIRCUIT</button>
+      <button data-stratum="signature"><i></i>SIGNATURE</button>
+    </div>
+    <button class="bay-close">⟵ REINSTALL COMPONENT</button>
+    <div class="bay-scroll">
+
+      <section class="stratum stratum--housing" data-stratum="housing">
+        <header class="bay-head">
+          <p class="bh-id">NV-02 · SERVICE MODULE · EXTRACTED</p>
+          <h2 class="bh-name">P.KIT</h2>
+          <div class="bh-pins"><span>Product Design</span><span>Service Design</span><span>UX/UI Design</span><span>Branding</span><span>Graphic design</span></div>
+        </header>
+        <figure class="full-art"><img decoding="async" src="assets/pkit/Frame 332.webp" alt="P.KIT" loading="lazy"></figure>
+
+        <div class="pair">
+          <div class="pair-copy">
+            <h3>Designed for both user convenience and logistical efficiency.</h3>
+            <p class="stat-block"><strong class="stat-big">+57%</strong><span class="stat-label">Transport space saved.</span></p>
+          </div>
+          <div class="pair-media"><img decoding="async" src="assets/pack-p-kit.webp" alt="P.kit packaging" loading="lazy"></div>
+        </div>
+
+        <div class="marquee marquee--captioned">
+          <div class="marquee-track">
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/01.jpg" alt="" loading="lazy"><figcaption>Carrot dip</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/02.jpg" alt="" loading="lazy"><figcaption>Cavolo che side</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/03.jpg" alt="" loading="lazy"><figcaption>Fiber shot</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/04.jpg" alt="" loading="lazy"><figcaption>Green dream beagle</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/05.jpg" alt="" loading="lazy"><figcaption>Green nuggets</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/06.jpg" alt="" loading="lazy"><figcaption>Herb bruschetta</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/07.jpg" alt="" loading="lazy"><figcaption>Ring of flavor</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/08.jpg" alt="" loading="lazy"><figcaption>Choco berry bliss</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/09.jpg" alt="" loading="lazy"><figcaption>Choco fluffy</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/10.jpg" alt="" loading="lazy"><figcaption>Cinnabites</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/11.jpg" alt="" loading="lazy"><figcaption>Cruncky spicy nuts</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/12.jpg" alt="" loading="lazy"><figcaption>Kimchi crush</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/13.jpg" alt="" loading="lazy"><figcaption>Octobowl crunch</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/14.jpg" alt="" loading="lazy"><figcaption>Olive twist</figcaption></figure>
+            <figure><img decoding="async" src="assets/pkit/Karosello P.KIT Food/15.jpg" alt="" loading="lazy"><figcaption>Purple n' mayo</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/01.jpg" alt="" loading="lazy"><figcaption>Carrot dip</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/02.jpg" alt="" loading="lazy"><figcaption>Cavolo che side</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/03.jpg" alt="" loading="lazy"><figcaption>Fiber shot</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/04.jpg" alt="" loading="lazy"><figcaption>Green dream beagle</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/05.jpg" alt="" loading="lazy"><figcaption>Green nuggets</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/06.jpg" alt="" loading="lazy"><figcaption>Herb bruschetta</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/07.jpg" alt="" loading="lazy"><figcaption>Ring of flavor</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/08.jpg" alt="" loading="lazy"><figcaption>Choco berry bliss</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/09.jpg" alt="" loading="lazy"><figcaption>Choco fluffy</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/10.jpg" alt="" loading="lazy"><figcaption>Cinnabites</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/11.jpg" alt="" loading="lazy"><figcaption>Cruncky spicy nuts</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/12.jpg" alt="" loading="lazy"><figcaption>Kimchi crush</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/13.jpg" alt="" loading="lazy"><figcaption>Octobowl crunch</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/14.jpg" alt="" loading="lazy"><figcaption>Olive twist</figcaption></figure>
+            <figure aria-hidden="true"><img decoding="async" src="assets/pkit/Karosello P.KIT Food/15.jpg" alt="" loading="lazy"><figcaption>Purple n' mayo</figcaption></figure>
+          </div>
+        </div>
+        <p class="bench-note">Food design was born with the goal of merging it with the product into a single visual language. We studied cuts, shapes and colours to ensure functionality and visual balance.</p>
+      </section>
+
+      <section class="stratum stratum--mechanism" data-stratum="mechanism">
+        <h3 class="stratum-label"><span>STRATUM 02</span>MECHANISM — HOW IT WAS MADE</h3>
+        <div class="bench-row bench-row--3">
+          <figure class="probe"><img decoding="async" src="assets/pkit/ux pkit.jpeg" alt="P.Kit prototype" loading="lazy"><figcaption>PROTO 01 — PACK</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/pkit/ux p.kit 2.jpeg" alt="P.Kit prototype" loading="lazy"><figcaption>PROTO 02 — STACKING</figcaption></figure>
+          <figure class="probe"><img decoding="async" src="assets/pkit/ux pkit3.jpg" alt="P.Kit prototype" loading="lazy"><figcaption>PROTO 03 — CORD</figcaption></figure>
+        </div>
+        <p class="bench-note">The pack was designed to optimise the speed of selection. Modular and stackable, it clearly communicates category hierarchy at a glance. Effortlessly portable, its reusable cord transforms into a personal accessory, a lasting tactile reminder to make mindful food choices.</p>
+
+        <figure class="full-art"><img decoding="async" src="assets/pkit/schermate p.kit.webp" alt="P.Kit app screens" loading="lazy"></figure>
+        <div class="grid-4">
+          <div class="g4"><h4>Delivery</h4><p>Users can intuitively and visually create their own combo meal. <strong>The interface makes selection immediate and fast.</strong></p></div>
+          <div class="g4"><h4>Nutrition</h4><p><em>We provide transparency and nutritional awareness,</em> displaying ingredients, nutritional values, and health benefits.</p></div>
+          <div class="g4"><h4>Education</h4><p>We integrate educational content to <em>raise user awareness about the role of the microbiota and the importance of proper nutrition.</em></p></div>
+          <div class="g4"><h4>Program</h4><p>The goal is to <em>transform the user experience into a journey of awareness,</em> where food choices are directly connected to personal well-being.</p></div>
+        </div>
+
+        <div class="marquee marquee--tall">
+          <div class="marquee-track">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/0007.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/001.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/002.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/003.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/004.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/005.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/006.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/008.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/009.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/010.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/011.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/0007.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/001.webp" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/002.webp" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/003.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/004.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/005.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/006.webp" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/008.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/009.webp" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/010.webp" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pkit/Karosello P.KIT UX/011.webp" alt="" loading="lazy" aria-hidden="true">
+          </div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--circuit" data-stratum="circuit">
+        <h3 class="stratum-label"><span>STRATUM 03</span>CIRCUIT — WHY IT EXISTS</h3>
+        <div class="circuit-brief">
+          <img decoding="async" src="assets/pkit/avenade logo.webp" alt="Avenade" class="circuit-logo" loading="lazy">
+          <h4>CLIENT REQUEST</h4>
+          <p>Design a product-service solution that responds to a specific dependency within the urban context of Milan</p>
+        </div>
+        <div class="circuit-brief">
+          <h4>THE KIT</h4>
+          <p>P.Kit is a service designed to restore gut health and free the body from addiction to ultra-processed foods. The Pack and the App together offer a new way to experience mealtime, making it more mindful, engaging and sustainable.</p>
+        </div>
+        <div class="circuit-cols">
+          <div class="circuit-col">
+            <p class="cc-callout">WHY THIS EXISTS</p>
+            <p class="cc-orig">Context</p>
+            <img decoding="async" src="assets/pkit/Frame 374.webp" alt="Context" loading="lazy">
+            <p class="cc-cap">50% of workers have lunch outside their houses.</p>
+            <p class="cc-text">Practicality and speed at the expense of nutritional quality.</p>
+          </div>
+          <div class="circuit-col">
+            <p class="cc-callout">WHAT IT FIGHTS</p>
+            <p class="cc-orig">Problem</p>
+            <img decoding="async" src="assets/pkit/Frame 375.webp" alt="Problem" loading="lazy">
+            <p class="cc-cap">5 milions Italians aged 18–34 consume junk food 2–3 times per week.</p>
+            <p class="cc-text">Ultra-processed foods are engineered to appeal to the senses and create addiction.</p>
+          </div>
+          <div class="circuit-col">
+            <p class="cc-callout">THE LEVER</p>
+            <p class="cc-orig">Insight</p>
+            <img decoding="async" src="assets/pkit/Frame 376.webp" alt="Insight" loading="lazy">
+            <p class="cc-cap">Regular consume of junk food increases +30% risk of colon cancer.</p>
+            <p class="cc-text">Metabolism changes depending on how it is nourished. The more junk food we consume, the less we want to eat healthy food.</p>
+          </div>
+        </div>
+
+        <div class="circuit-collab">
+          <h4>COLLABORATIONS</h4>
+          <p>To build a menu that genuinely supports gut health, we worked with a nutritionist to define the right balance of ingredients, portion sizes, and nutritional profiles for each meal.</p>
+          <p>For the menu development, we partnered with Le Presine Volanti, a Mediterranean restaurant in Milan. Their chef helped us craft a diverse, seasonal, and sustainable offering aligned with P.Kit's nutritional vision.</p>
+          <div class="collab-tags"><span>Lorenzo Casadei — Nutrizionista</span><span>Ristorante Le Presine Volanti — Ristorante mediterraneo a Milano</span></div>
+        </div>
+
+        <div class="pair">
+          <div class="pair-copy">
+            <h3>Sustainability</h3>
+            <p><strong>P.kit</strong> combines sustainability and innovation with a <strong>no food waste menu that minimizes leftovers</strong>. This way, we promote <strong>responsible nutrition</strong> while contributing to a more sustainable future.</p>
+          </div>
+          <div class="pair-media"><img decoding="async" src="assets/pkit/sezione 7 pkit green.webp" alt="Sustainability pie chart" loading="lazy"></div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--signature" data-stratum="signature">
+        <p class="sig-pre">STRATUM 04 — ENGRAVED INSIDE THE CASE. ONLY PEOPLE WHO OPEN THINGS READ THIS.</p>
+        <blockquote class="sig-text">The detail I refused to cut was the cord. A pack you throw away teaches nothing; a cord that becomes something you wear keeps the promise in your pocket. We pitched gut health to supermarket executives — but the real product was a daily, tactile reminder to choose better.</blockquote>
+        <p class="sig-name">— N. Veltroni, 2025</p>
+      </section>
+
+      <nav class="bay-next"><button class="bay-next-btn" data-next="pronap">NEXT COMPONENT: NV-03 · PRO NAP →</button><button class="bay-contact js-ticket">FILE A SERVICE REQUEST</button></nav>
+    </div>
+  </div>
+
+  <!-- ═══ BAY 03 · PRO NAP ═══ -->
+  <div class="bay" id="bay-pronap" role="dialog" aria-modal="true" aria-label="Pro Nap case study" hidden>
+    <div class="bay-gauge" aria-hidden="true">
+      <button data-stratum="housing"><i></i>HOUSING</button>
+      <button data-stratum="mechanism"><i></i>MECHANISM</button>
+      <button data-stratum="circuit"><i></i>CIRCUIT</button>
+      <button data-stratum="signature"><i></i>SIGNATURE</button>
+    </div>
+    <button class="bay-close">⟵ REINSTALL COMPONENT</button>
+    <div class="bay-scroll">
+
+      <section class="stratum stratum--housing" data-stratum="housing">
+        <header class="bay-head">
+          <p class="bh-id">NV-03 · DAUGHTERBOARD · EXTRACTED</p>
+          <h2 class="bh-name">PRO NAP</h2>
+          <div class="bh-pins"><span>Industrial Design</span><span>UX/UI Design</span></div>
+        </header>
+        <figure class="full-art"><img decoding="async" src="assets/pro-nap/wearly fuul image.webp" alt="Pro Nap headset" loading="lazy"></figure>
+
+        <div class="pair">
+          <div class="pair-copy">
+            <h3>A compact power nap headset.</h3>
+            <p>Pro Nap is a <strong>compact power nap headset</strong> that brings multisensory stimulation, controlled through the companion app, designed to guide the user into a restorative state in 20 to 30 minutes.</p>
+            <p>The geometry is clean and considered, with a strong tech aesthetic. The colorway was chosen for calm. Fabric surfaces were chosen for a precise reason: the moment you touch the device, <strong>it shouldn't push you away like a cold plastic or metal touch</strong>. A warm, soft material at first contact sets the tone for the experience before it even begins. The internal padding is memory foam, wrapped in cotton, chosen for prolonged contact comfort. The outer shell is ABS covered in polyester fabric.</p>
+          </div>
+          <div class="pair-media"><img decoding="async" src="assets/pro-nap/wearly render finale senza sfondo.webp" alt="Pro Nap render" loading="lazy"></div>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-track">
+            <video data-src="assets/pro-nap/Karosello Pro Nap/1.mp4" muted playsinline loop preload="none"></video>
+            <video data-src="assets/pro-nap/Karosello Pro Nap/2.mp4" muted playsinline loop preload="none"></video>
+            <img decoding="async" src="assets/pro-nap/Karosello Pro Nap/3.webp" alt="" loading="lazy">
+            <img decoding="async" src="assets/pro-nap/Karosello Pro Nap/4.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/pro-nap/Karosello Pro Nap/5.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/pro-nap/Karosello Pro Nap/6.webp" alt="" loading="lazy">
+            <video data-src="assets/pro-nap/Karosello Pro Nap/1.mp4" muted playsinline loop preload="none" aria-hidden="true"></video>
+            <video data-src="assets/pro-nap/Karosello Pro Nap/2.mp4" muted playsinline loop preload="none" aria-hidden="true"></video>
+            <img decoding="async" src="assets/pro-nap/Karosello Pro Nap/3.webp" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pro-nap/Karosello Pro Nap/4.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pro-nap/Karosello Pro Nap/5.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/pro-nap/Karosello Pro Nap/6.webp" alt="" loading="lazy" aria-hidden="true">
+          </div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--mechanism" data-stratum="mechanism">
+        <h3 class="stratum-label"><span>STRATUM 02</span>MECHANISM — WHAT'S INSIDE</h3>
+
+        <figure class="full-art full-art--pad"><img decoding="async" src="assets/pro-nap/esploso cuffia senza sfondo.webp" alt="Pro Nap exploded view" loading="lazy"></figure>
+        <div class="grid-4 grid-4--2">
+          <div class="g4"><h4>Production</h4><p><strong>Designed for industrial production</strong>, with material choices, tolerances, and assembly logic driven by cost-efficiency and scalability.</p></div>
+          <div class="g4"><h4>Audio</h4><p><strong>Three microphones per earcup</strong> enable active noise cancellation, paired with acoustic foam for passive isolation.</p></div>
+        </div>
+
+        <figure class="full-art full-art--pad"><img decoding="async" src="assets/pro-nap/gruppo sez 6.webp" alt="Pro Nap group view" loading="lazy"></figure>
+        <div class="grid-4 grid-4--3">
+          <div class="g4"><h4>Massage</h4><p><strong>Six micro-motors</strong> generate gentle vibrations on the temples, forehead, and cheekbones, relieving muscle tension. The silicone supports amplify the effect.</p></div>
+          <div class="g4"><h4>Light therapy</h4><p><strong>ten infrared micro-LEDs</strong>, the device provides a warm and gentle light therapy.</p></div>
+          <div class="g4"><h4>Heating</h4><p><strong>Two 12V coils</strong> release a constant warmth beneath the eyes.</p></div>
+        </div>
+
+        <figure class="full-art"><img decoding="async" src="assets/pro-nap/evoluzione 3d pronap.webp" alt="Evoluzione 3D Pro Nap" loading="lazy"></figure>
+
+        <div class="bench-row bench-row--3 bench-row--video">
+          <video data-src="assets/pro-nap/pronap-slide-carousel/24.mp4" muted playsinline loop preload="none"></video>
+          <video data-src="assets/pro-nap/pronap-slide-carousel/23.mp4" muted playsinline loop preload="none"></video>
+          <video data-src="assets/pro-nap/video app pro nap.mp4" id="pnr-app-video" muted playsinline preload="none"></video>
+        </div>
+
+        <div class="pair">
+          <div class="pair-copy">
+            <h3>The app is the control layer of the entire experience.</h3>
+            <p>Before each session, the user selects the type of rest they need: deep relaxation, stress reduction, or an energy reset; and fine-tunes the sensory inputs to their preference. The device responds accordingly.</p>
+          </div>
+          <div class="pair-media"><img decoding="async" src="assets/pro-nap/app pro nap.webp" alt="Pro Nap App" loading="lazy"></div>
+        </div>
+        <div class="pair pair--flip">
+          <div class="pair-copy">
+            <h3>One question, rotating, never intrusive.</h3>
+            <p>After the session, a short optional prompt appears, a single question about energy, focus, or stress levels.</p>
+            <p>Over time, these responses accumulate into a personal wellbeing history: a quiet record of how the users feels across weeks and months, visible only to them. The more Pro Nap is used, the more the picture becomes clear for the individual, and for the organization behind them.</p>
+          </div>
+          <div class="pair-media pair-media--duo">
+            <img decoding="async" src="assets/pro-nap/feedback pro nap.webp" alt="Feedback Pro Nap" loading="lazy">
+            <img decoding="async" src="assets/pro-nap/software pro nap.webp" alt="Software Pro Nap" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--circuit" data-stratum="circuit">
+        <h3 class="stratum-label"><span>STRATUM 03</span>CIRCUIT — WHY IT EXISTS</h3>
+        <div class="circuit-brief">
+          <h4>BRIEF</h4>
+          <p>Develop an innovative startup project based on <strong>Health tech products</strong>. The team has to explore the market, user needs, and competitors to define an original concept, developed through a design thinking approach with a focus on functionality, sustainability, cost, and production processes.</p>
+        </div>
+        <div class="circuit-cols">
+          <div class="circuit-col">
+            <p class="cc-callout">WHY THIS EXISTS</p>
+            <p class="cc-orig">Context</p>
+            <img decoding="async" src="assets/pro-nap/Frame 375.webp" alt="Context" loading="lazy">
+            <p class="cc-cap">Power napping was our design territory and the sleeping pod the product most directly connected to it.</p>
+            <p class="cc-text">Rooted in Asian workplace cultures like Japan and China, power napping had become part of the conversation in modern work environments and big tech companies were increasingly open to integrating rest as part of productivity.</p>
+          </div>
+          <div class="circuit-col">
+            <p class="cc-callout">WHAT ALMOST KILLED IT</p>
+            <p class="cc-orig">Problem</p>
+            <img decoding="async" src="assets/pro-nap/Frame 374.webp" alt="Problem" loading="lazy">
+            <p class="cc-cap">The cost and footprint of sleeping pods make them unscalable.</p>
+            <p class="cc-text">Cost makes products like MetroNaps impractical for most organizations. Companies were already building rest areas through hammocks, lounges, and comfortable areas — but without solutions that can fit them.</p>
+          </div>
+          <div class="circuit-col">
+            <p class="cc-callout">THE TRADE WE MADE</p>
+            <p class="cc-orig">Insight</p>
+            <img decoding="async" src="assets/pro-nap/Frame 376.webp" alt="Insight" loading="lazy">
+            <p class="cc-cap">Pod sensory technology can be compressed into a form factor with no fixed footprint.</p>
+            <p class="cc-text">The release of Meta Quest 3 and Apple Vision Pro that year influenced both the aesthetic direction and the need to compress pod technology into something smaller, wearable, and flexible enough to fit existing rest spaces.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--signature" data-stratum="signature">
+        <p class="sig-pre">STRATUM 04 — ENGRAVED INSIDE THE CASE. ONLY PEOPLE WHO OPEN THINGS READ THIS.</p>
+        <blockquote class="sig-text">My hill to die on was the first touch. Specs sell pods; fabric sells rest. I argued for warm textile over cold plastic before a single circuit was placed, because a wellness device that feels like a machine has already failed. Everything else — the motors, the LEDs, the coils — had to earn its way in after that.</blockquote>
+        <p class="sig-name">— N. Veltroni, 2024</p>
+      </section>
+
+      <nav class="bay-next"><button class="bay-next-btn" data-next="tolean">NEXT COMPONENT: NV-04 · TOLEAN →</button><button class="bay-contact js-ticket">FILE A SERVICE REQUEST</button></nav>
+    </div>
+  </div>
+
+  <!-- ═══ BAY 04 · TOLEAN ═══ -->
+  <div class="bay" id="bay-tolean" role="dialog" aria-modal="true" aria-label="Tolean case study" hidden>
+    <div class="bay-gauge" aria-hidden="true">
+      <button data-stratum="housing"><i></i>HOUSING</button>
+      <button data-stratum="mechanism"><i></i>MECHANISM</button>
+      <button data-stratum="circuit"><i></i>CIRCUIT</button>
+      <button data-stratum="signature"><i></i>SIGNATURE</button>
+    </div>
+    <button class="bay-close">⟵ REINSTALL COMPONENT</button>
+    <div class="bay-scroll">
+
+      <section class="stratum stratum--housing" data-stratum="housing">
+        <header class="bay-head">
+          <p class="bh-id">NV-04 · SOCKETED CHIP · EXTRACTED</p>
+          <h2 class="bh-name">TOLEAN</h2>
+          <div class="bh-pins"><span>Tech boardgame</span><span>Arduino</span><span>3D printing</span></div>
+        </header>
+        <figure class="full-art"><img decoding="async" src="assets/tolean-hero.webp" alt="Tolean" loading="lazy"></figure>
+        <div class="full-video"><video data-src="assets/video-tolean.mp4" muted loop playsinline preload="none"></video></div>
+      </section>
+
+      <section class="stratum stratum--mechanism" data-stratum="mechanism">
+        <h3 class="stratum-label"><span>STRATUM 02</span>MECHANISM — THE BUILD</h3>
+        <div class="marquee marquee--tall">
+          <div class="marquee-track">
+            <video data-src="assets/tolean/Karosello Tolean/01.mp4" muted loop playsinline preload="none"></video>
+            <img decoding="async" src="assets/tolean/Karosello Tolean/02.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/03.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/04.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/05.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/06.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/07.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/08.jpg" alt="" loading="lazy">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/09.jpg" alt="" loading="lazy">
+            <video data-src="assets/tolean/Karosello Tolean/10.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/11.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/12.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/13.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/14.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/15.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/16.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/17.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/18.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/19.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/20.mp4" muted loop playsinline preload="none"></video>
+            <video data-src="assets/tolean/Karosello Tolean/01.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <img decoding="async" src="assets/tolean/Karosello Tolean/02.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/03.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/04.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/05.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/06.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/07.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/08.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img decoding="async" src="assets/tolean/Karosello Tolean/09.jpg" alt="" loading="lazy" aria-hidden="true">
+            <video data-src="assets/tolean/Karosello Tolean/10.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/11.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/12.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/13.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/14.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/15.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/16.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/17.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/18.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/19.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+            <video data-src="assets/tolean/Karosello Tolean/20.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+          </div>
+        </div>
+      </section>
+
+      <section class="stratum stratum--circuit" data-stratum="circuit">
+        <h3 class="stratum-label"><span>STRATUM 03</span>CIRCUIT — HOW IT WORKS</h3>
+        <div class="circuit-brief">
+          <h4>TOLEAN: THE ARDUINO-POWERED LABYRINTH GAME FOR TEENS AND ADULTS</h4>
+          <p>Two players face off in <strong>an intricate maze made of interchangeable tiles</strong>.</p>
+          <p>The labyrinth is crafted using advanced technologies like <strong>FDM and SLA 3D printing</strong>, ensuring precision and durability. Additionally, <strong>laser cutting on PMMA</strong> (acrylic) was used for the main structure.</p>
+          <p>The heart of the game is <strong>an Arduino module</strong> running a custom code that governs turn dynamics, board tilting, and random events. Players interact via <strong>four buttons that activate stepper motors to tilt the playing surface</strong>. The movement of the tiles is randomly conditioned by the Arduino, which dictates which color must be moved.</p>
+        </div>
+      </section>
+
+      <section class="stratum stratum--signature" data-stratum="signature">
+        <p class="sig-pre">STRATUM 04 — ENGRAVED INSIDE THE CASE. ONLY PEOPLE WHO OPEN THINGS READ THIS.</p>
+        <blockquote class="sig-text">Eight weeks, no screens. I wrote the C++ myself, watched stepper motors strip gears, reprinted tiles until the tolerances clicked. Tolean is the smallest thing here and the one that proves the rest: when the prototype has to physically work on a table in front of two impatient players, there is nowhere for a designer to hide.</blockquote>
+        <p class="sig-name">— N. Veltroni, 2024</p>
+      </section>
+
+      <nav class="bay-next"><button class="bay-next-btn" data-next="interact">NEXT COMPONENT: NV-01 · INTERACT →</button><button class="bay-contact js-ticket">FILE A SERVICE REQUEST</button></nav>
+    </div>
+  </div>
+
+  <!-- ═══ 05 · OPERATOR ═══ -->
+  <section id="operator" aria-label="About Nic Veltroni">
+    <header class="op-head">
+      <p class="op-doc">CERT. NO. OP-22 · CALIBRATION CERTIFICATE</p>
+      <h2>OPERATOR: N. VELTRONI</h2>
+      <p class="op-role">Product Designer · 22 yrs · Based in Berlin</p>
+    </header>
+
+    <div class="op-grid">
+      <div class="op-badge">
+        <img decoding="async" src="assets/nic foto profilo portfolio.webp" alt="Nic Veltroni" loading="lazy">
+        <p class="op-badge-label">ID BADGE — CLIP TO CHASSIS</p>
+      </div>
+
+      <div class="op-main">
+        <blockquote class="op-quote">I am a designer who builds. I am fascinated by how <strong>the designer's role is shifting</strong> from creative support to full execution. With new technologies, such as <strong>AI-driven prototyping</strong>, I can transform bold concepts into <strong>fully functional, end-to-end products</strong>. I combine this technical agility with a rigorous focus on <strong>meaning, visual identity, and storytelling</strong>, ensuring that every product carries a compelling narrative that brings new value to people's everyday lives.</blockquote>
+
+        <div class="op-block">
+          <p class="op-label">FIRMWARE v2026.06 — CURRENT FOCUS</p>
+          <p><strong>AI &amp; Direct Deliverability:</strong> Exploring AI-driven prototyping to build fully functional, end-to-end products from scratch.</p>
+          <p><strong>Visual Identity &amp; Storytelling:</strong> Directing visual identity and focusing on building the core narrative and meaning that define a Company true value and vision.</p>
+        </div>
+
+        <div class="op-block">
+          <p class="op-label">AREAS OF EXPLORATION</p>
+          <div class="op-tags">
+            <span>Product Design</span><span>UX/UI Design</span><span>Branding</span><span>Service Design</span><span>Startup</span><span>Speculative Research</span><span>Artificial Intelligence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="op-cols">
+      <div class="op-col">
+        <p class="op-label">TESTED COMPONENTS — SKILLS &amp; TOOLS</p>
+        <div class="op-check">
+          <p class="op-check-cat">Software</p>
+          <ul>
+            <li>Figma <i>✓ PASS</i></li>
+            <li>Claude Code <i>✓ PASS</i></li>
+            <li>Higgsfield, Midjourney, Krea, Magnific, Weavy <i>✓ PASS</i></li>
+            <li>Adobe Suite <i>✓ PASS</i></li>
+            <li>Blender <i>✓ PASS</i></li>
+            <li>Rhinoceros 3D <i>✓ PASS</i></li>
+          </ul>
+          <p class="op-check-cat">Prototyping</p>
+          <ul>
+            <li>HTML / CSS / JS <i>✓ PASS</i></li>
+            <li>3D Printing <i>✓ PASS</i></li>
+            <li>3D Modeling <i>✓ PASS</i></li>
+            <li>Laser Cut <i>✓ PASS</i></li>
+            <li>CNC <i>✓ PASS</i></li>
+            <li>Arduino <i>✓ PASS</i></li>
+          </ul>
+          <p class="op-check-cat">Soft Skills</p>
+          <ul>
+            <li>Team working <i>✓ PASS</i></li>
+            <li>Idea generation <i>✓ PASS</i></li>
+            <li>Empathy <i>✓ PASS</i></li>
+            <li>Problem solving <i>✓ PASS</i></li>
+            <li>Humility <i class="pending">CALIBRATION PENDING</i></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="op-col">
+        <p class="op-label">SERVICE HISTORY — EXPERIENCE</p>
+        <div class="op-exp">
+          <p class="op-exp-title"><strong>Interact</strong> | Social discovery &amp; networking app.</p>
+          <p class="op-exp-meta">Personal startup project 2024–2025</p>
+          <ul>
+            <li>Managed a cross-functional team in Italy and the US</li>
+            <li>Participated in an MBA startup course at Wharton, University of Pennsylvania.</li>
+            <li>Built the entire design system and brand identity from scratch.</li>
+            <li>Pitched and received feedback from prominent venture capital firms and startup accelerators in Italy and the US.</li>
+          </ul>
+        </div>
+        <div class="op-exp">
+          <p class="op-exp-title"><strong>Avenade — P.Kit</strong> | Food service design aimed at restoring gut health from processed food addiction.</p>
+          <p class="op-exp-meta">University project 2025</p>
+          <ul>
+            <li>Built with my team the brand, service and product</li>
+            <li>Collaborated directly with professional nutritionists and restaurant partners to validate the service offer</li>
+            <li>Pitched to executives at major supermarket companies in Italy, including Esselunga and Carrefour.</li>
+          </ul>
+        </div>
+        <div class="op-exp">
+          <p class="op-exp-title"><strong>Warning</strong> | Independent journalism magazine.</p>
+          <p class="op-exp-meta">Co-founder &amp; Creative Director 2026 – Ongoing</p>
+          <ul>
+            <li>Designing the complete brand identity, visual systems, and corporate guidelines.</li>
+            <li>Directing the launch and growth strategy across social media channels</li>
+            <li>Raising $10k in funding from European public grants</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="op-col">
+        <p class="op-label">FACTORY ORIGIN — EDUCATION</p>
+        <div class="op-exp">
+          <p class="op-exp-title"><strong>IED — Istituto Europeo di Design</strong></p>
+          <p class="op-exp-meta">Milano / 2022–2025</p>
+          <p class="op-exp-meta">Bachelor's degree in Product Design</p>
+        </div>
+        <p class="op-label op-label--gap">I/O PROTOCOLS — LANGUAGES</p>
+        <ul class="op-langs">
+          <li>English</li>
+          <li>Spanish <em>(native)</em></li>
+          <li>Italian <em>(native)</em></li>
+        </ul>
+        <button class="op-cta js-ticket">FILE A SERVICE REQUEST →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 06 · SERVICE / CONTACT ═══ -->
+  <section id="service" aria-label="Contact">
+    <header class="sv-head">
+      <p class="sv-doc">FORM SR-26 · SERVICE REQUEST</p>
+      <h2>THIS UNIT ACCEPTS WORK ORDERS.</h2>
+    </header>
+
+    <form id="ticket-form" autocomplete="off">
+      <p class="sv-label">01 — SELECT AFFECTED PART</p>
+      <div class="sv-chips" role="radiogroup" aria-label="Request type">
+        <label><input type="radio" name="part" value="COLLABORATION" checked><span>COLLABORATION</span></label>
+        <label><input type="radio" name="part" value="FULL-TIME ROLE"><span>FULL-TIME ROLE</span></label>
+        <label><input type="radio" name="part" value="FREELANCE / PROJECT"><span>FREELANCE / PROJECT</span></label>
+        <label><input type="radio" name="part" value="JUST CURIOUS — I OPENED EVERYTHING"><span>JUST CURIOUS — I OPENED EVERYTHING</span></label>
+      </div>
+
+      <p class="sv-label">02 — DESCRIBE THE REQUEST</p>
+      <textarea id="ticket-msg" rows="4" placeholder="Describe the fault, the project, or the opportunity…"></textarea>
+
+      <p class="sv-label">03 — RETURN ADDRESS (optional)</p>
+      <input type="text" id="ticket-from" placeholder="Your name / company">
+
+      <button type="submit" id="ticket-print">PRINT TICKET ⏎</button>
+    </form>
+
+    <div id="ticket-out" hidden aria-live="polite">
+      <div class="ticket">
+        <p class="tk-head">SERVICE TICKET <span id="tk-num">#0000</span></p>
+        <p class="tk-row"><span>UNIT</span><span>NV-2026 / REV.04 — VELTRONI</span></p>
+        <p class="tk-row"><span>PART</span><span id="tk-part">—</span></p>
+        <p class="tk-row"><span>FROM</span><span id="tk-from">—</span></p>
+        <p class="tk-row tk-row--msg"><span>REQ.</span><span id="tk-msg">—</span></p>
+        <p class="tk-row"><span>SLA</span><span>REPLY WITHIN 48H OR YOUR CURIOSITY BACK.</span></p>
+        <a id="tk-send" href="#">TRANSMIT VIA EMAIL →</a>
+      </div>
+    </div>
+
+    <div class="sv-direct">
+      <a href="tel:+393294971622"><span>PHONE</span><span>+39 329 497 1622</span></a>
+      <a href="mailto:nicolovel11@gmail.com"><span>EMAIL</span><span>nicolovel11@gmail.com</span></a>
+    </div>
+  </section>
+
+  <!-- ═══ UNDERSIDE ═══ -->
+  <section id="underside" aria-label="Colophon">
+    <div class="us-plate">
+      <div class="us-feet"><i></i><i></i><i></i><i></i></div>
+      <p class="us-marks">NV-2026 · REV.04 &nbsp;·&nbsp; DESIGNED &amp; BUILT BY THE OPERATOR &nbsp;·&nbsp; MILANO → BERLIN &nbsp;·&nbsp; PORTFOLIO <em>2026</em></p>
+      <p class="us-counter" id="burnin">THIS UNIT HAS BEEN OPENED ON THIS DEVICE 1 TIME.</p>
+      <p class="us-contacts">
+        <a href="mailto:nicolovel11@gmail.com">nicolovel11@gmail.com</a> · <a href="tel:+393294971622">+39 329 497 1622</a>
+      </p>
+      <p class="us-hidden">IF YOU FLIPPED THIS OVER, WE SHOULD TALK.</p>
+    </div>
+  </section>
+
+  <script defer src="teardown.js"></script>
+</body>
+
+</html>

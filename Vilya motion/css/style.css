@@ -1,0 +1,204 @@
+/* ============================================================
+   VILYA — liquid halftone motion study
+   strict 1-bit palette: #000 / #fff
+   ============================================================ */
+
+:root {
+  --bg:  #000000;
+  --ink: #ffffff;
+  --mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --brand: 'Aquawax Light', var(--mono);
+  --hud-fs: clamp(8px, 0.6vw + 4px, 11px);
+}
+
+@font-face {
+  font-family: 'Aquawax Light';
+  src: url('../font/aquavax trial/Aquawax-Fx-Light-TRIAL.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  cursor: crosshair;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ---------- layer 1 · halftone canvas ---------- */
+#halftone {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ---------- layer 2 · liquid logo ---------- */
+#stage {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;          /* pointer tracked on window; stage never blocks */
+}
+
+#logo-mount {
+  width: min(78vmin, 730px);
+  position: relative;
+  top: -18px;
+  pointer-events: auto;          /* hover target for the liquid transition */
+  cursor: pointer;
+}
+
+#logo-mount svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;             /* parts travel + blur outside the viewBox */
+}
+
+/* sharp particle overlay sits on top of the goo, unfiltered */
+#logo-mount svg.spray {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ---------- HUD ---------- */
+.hud {
+  position: fixed;
+  z-index: 10;
+  font-size: var(--hud-fs);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud sup { font-size: 7px; letter-spacing: 0; }
+
+.brand { font-family: var(--brand); font-weight: 300; font-size: 2.6em; }
+
+.hud--tl { top: 24px;    left: 24px; cursor: pointer; }
+.hud--tr { top: 24px;    right: 24px; font-family: 'Instrument Sans', var(--mono); font-weight: 400; font-size: calc(var(--hud-fs) * 1.05); }
+
+.hud__icon {
+  width: 1.4em;
+  height: 1.4em;
+  flex-shrink: 0;
+  position: relative;
+  top: 0.05em;
+}
+.hud--bl { bottom: 24px; left: 24px; align-items: baseline; gap: 16px; }
+.hud--br { bottom: 24px; right: 24px; }
+
+.hud__label {
+  font-family: 'Swiss721 BT', var(--mono);
+  letter-spacing: -2px;
+  font-size: 4.5em;
+}
+
+.hud__sub {
+  font-family: 'Instrument Sans', var(--mono);
+  font-weight: 600;
+  font-size: 2em;
+}
+
+@media (max-width: 640px) {
+  .hud--tr, .hud--br { display: none; }
+}
+
+/* ---------- theme toggle (night / light) ---------- */
+.theme-toggle {
+  position: fixed;
+  z-index: 10;
+  top: 50px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: calc(var(--hud-fs) * 1.8);
+  color: var(--ink);
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.theme-toggle__track {
+  position: relative;
+  width: 2.6em;
+  height: 1.3em;
+  border: 1px solid var(--ink);
+  border-radius: 1em;
+  transition: border-color 0.35s ease;
+}
+
+.theme-toggle__thumb {
+  position: absolute;
+  top: 50%;
+  left: 0.16em;
+  width: 0.98em;
+  height: 0.98em;
+  border-radius: 50%;
+  background: var(--ink);
+  transform: translateY(-50%);
+  transition: left 0.35s ease, background 0.35s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle__icon {
+  position: absolute;
+  width: 0.62em;
+  height: 0.62em;
+  color: var(--bg);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.theme-toggle__icon--moon { opacity: 1; }
+body.theme-light .theme-toggle__icon--moon { opacity: 0; }
+body.theme-light .theme-toggle__icon--sun { opacity: 1; }
+
+body.theme-light .theme-toggle__thumb { left: calc(100% - 0.16em - 0.98em); }
+
+@media (max-width: 640px) {
+  .theme-toggle { display: none; }
+}
+
+/* ---------- theme transition (circular reveal) ---------- */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+  will-change: clip-path;
+}
+
+/* ---------- card preview mode (?card=1 in iframe src) ---------- */
+.card-preview .hud,
+.card-preview .theme-toggle { display: none; }
+.card-preview #logo-mount { top: 0; }

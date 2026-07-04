@@ -77,7 +77,6 @@
     if (opts && opts.nowrap) sp.style.whiteSpace = 'nowrap';
     parent.appendChild(sp);
     typeInto(sp, text, TYPE_INFLATE, function () {
-      sp.style.textTransform = 'uppercase';
       sp.classList.add('inflated');
       done && done();
     });
@@ -124,33 +123,16 @@
     h.className = 'intro-heading';
     slot.appendChild(h);
 
+    h.style.whiteSpace = 'nowrap';
+
     var line1 = document.createElement('span');
-    line1.style.fontWeight = '200';
+    line1.style.fontWeight = '400';
     h.appendChild(line1);
-    var line2 = document.createElement('span');
 
     seq([
-      function (n) { typeInto(line1, "Hi! I'm ", TYPE_SLOW, n); },
-      function (n) {
-        // Inline pixel-name "NIC VELTRONI" — shuffled-reveal then start flicker
-        var px = document.createElement('span');
-        px.id = 'intro-pixel-name';
-        px.innerHTML = window._introPixelSVG || '';
-        line1.appendChild(px);
-        var pxs = Array.from(px.querySelectorAll('.px'));
-        pxs.forEach(function (el) { el.setAttribute('opacity', '0'); });
-        window._shuffledReveal(pxs, 16);
-        setTimeout(function () {
-          n();
-        }, pxs.length * 8 + 120);
-      },
-      function (n) {
-        h.appendChild(document.createElement('br'));
-        h.appendChild(line2);
-        t(line2, 'a ', TYPE_SLOW, n);
-      },
+      function (n) { typeInto(line1, "Hi! I'm Nic, a ", TYPE_SLOW, n); },
       function () {
-        boldItalic(line2, 'PRODUCT DESIGNER.', function () {
+        boldItalic(h, 'Product Designer.', function () {
           var id = runId;
           setTimeout(function () { if (runId !== id) return; done(); }, 2000);
         });
@@ -164,16 +146,16 @@
     p.className = 'intro-para';
     slot.appendChild(p);
     seq([
-      function (n) { t(p, 'I ', TYPE_FAST, n); },
-      function (n) { italic(p, 'work', n); },
-      function (n) { t(p, ' across the full arc of designing a project. from ', TYPE_FAST, n); },
-      function (n) { hl(p, 'the vision', n); },
+      function (n) { t(p, "I'm a ", TYPE_FAST, n); },
+      function (n) { boldItalic(p, 'full stack creative', n); },
+      function (n) { t(p, ', I ', TYPE_FAST, n); },
+      function (n) { italic(p, 'design', n); },
+      function (n) { t(p, ' from ', TYPE_FAST, n); },
+      function (n) { boldItalic(p, 'the vision', n); },
       function (n) { t(p, ' to ', TYPE_FAST, n); },
-      function (n) { hl(p, 'the detail', n); },
-      function (n) { t(p, ' of an ', TYPE_FAST, n); },
-      function (n) { italic(p, 'interface', n); },
-      function (n) { t(p, ' or a ', TYPE_FAST, n); },
-      function (n) { italic(p, 'physical object', n); },
+      function (n) { boldItalic(p, 'the detail', n); },
+      function (n) { t(p, ' of a', TYPE_FAST, n); },
+      function (n) { italic(p, 'project', n); },
       function (n) { t(p, '.', TYPE_FAST, function () {
         var id = runId;
         setTimeout(function () { if (runId !== id) return; done(); }, 2200);
@@ -196,16 +178,16 @@
       function (n) { t(line1, "I'm ", TYPE_FAST, n); },
       function (n) { italic(line1, 'focused', n); },
       function (n) { t(line1, ' on ', TYPE_FAST, n); },
-      function (n) { boldItalic(line1, 'HUMAN EXPERIENCE', function () { setTimeout(n, 1800); }); },
+      function (n) { boldItalic(line1, 'human experience', n); },
+      function (n) { t(line1, ':', TYPE_FAST, n); },
       function (n) { t(p, 'how ', TYPE_FAST, n); },
-      function (n) { hl(p, 'products', n); },
+      function (n) { boldItalic(p, 'brands', n); },
       function (n) { t(p, ' and ', TYPE_FAST, n); },
-      function (n) { hl(p, 'services', n); },
-      function (n) { t(p, ' enter', TYPE_FAST, n); },
-      function (n) { p.appendChild(document.createElement('br')); n(); },
-      function (n) { t(p, "people's daily lives and ", TYPE_FAST, n); },
+      function (n) { boldItalic(p, 'products', n); },
+      function (n) { t(p, " enter people's daily lives and ", TYPE_FAST, n); },
       function (n) { italic(p, 'shape ', n); },
-      function (n) { hl(p, 'culture, space and identity', n); },
+      function (n) { boldItalic(p, 'culture, space and identity', n); },
+      function (n) { t(p, '.', TYPE_FAST, n); },
       function (n) {
         var id = runId;
         if (done) setTimeout(function () { if (runId !== id) return; done(); }, 2000);
@@ -271,11 +253,6 @@
     }
   }, { passive: true });
 
-  // ── Mobile: page-scroll ha overflow:hidden → nessuno scroll event.
-  //    Auto-trigger diretto dopo il caricamento. ──
-  if (window.innerWidth <= 768) {
-    setTimeout(function () {
-      if (!triggered && !cooldown) { triggered = true; run(); }
-    }, 400);
-  }
+  // Mobile: la pagina ora scorre normalmente, quindi il trigger
+  // via scroll qui sopra copre anche i viewport ≤768px.
 })();

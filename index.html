@@ -3,18 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Nic Veltroni — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Epilogue:wght@100;200;300;400;500&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fragment+Mono:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
   <link href="https://fonts.cdnfonts.com/css/chantal" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=401">
+  <link rel="stylesheet" href="style.css?v=406">
   <script>
     (function () {
       var h = location.hash.replace('#', '');
-      if (h === 'pronap' || h === 'pkit' || h === 'interact' || h === 'tolean') {
+      if (h === 'pronap' || h === 'pkit' || h === 'interact' || h === 'tolean' || h === 'flea') {
         document.documentElement.classList.add('panel-preload');
       }
     })();
@@ -23,18 +23,9 @@
 
 <body>
 
-  <!-- ═══ MOBILE OVERLAY ═══ -->
-  <div id="mobile-overlay">
-    <p id="mobile-overlay-text">Not optimized for mobile.<br>Please watch on desktop.</p>
-  </div>
-
   <!-- ═══ HEADER ═══ -->
   <header id="main-header" class="hero-nav">
     <div class="header-pixel" id="header-pixel"></div>
-    <div class="based-in-wrap">
-      <span class="based-in">Based in:</span>
-      <div id="header-city"></div>
-    </div>
     <a href="#" class="mobile-contact-btn">Contact</a>
     <nav>
       <a href="#" id="nav-work">Work</a>
@@ -42,7 +33,6 @@
       <a href="#">Contact</a>
     </nav>
   </header>
-
 
   <div id="page-scroll">
 
@@ -59,14 +49,32 @@
       </div>
     </section>
 
-    <!-- ═══ INTRO SECTION ═══ -->
-    <section id="intro-section">
-      <div class="intro-slot"></div>
-    </section>
-
     <!-- ═══ PROJECTS GRID SECTION ═══ -->
     <section id="carousel-section">
       <div class="projects-grid">
+        <div class="new-project-card-wrapper">
+          <div id="new-project-new-badge" class="vilya-card-new-badge"></div>
+          <a class="proj-card proj-card--wide js-open-flea">
+            <div class="proj-card-hover-panel"><!-- pixel name injected here by JS --></div>
+            <div class="proj-card-info-overlay">
+              <div class="pci-row"><span class="pci-label">YEAR</span><span class="pci-val">2026</span></div>
+              <div class="pci-row"><span class="pci-label">TYPE</span><span class="pci-val">Motion, Digital</span></div>
+            </div>
+            <iframe class="vilya-card-preview" src="flea motion/index.html?card=1" tabindex="-1" scrolling="no" title="Flea Motion project preview"></iframe>
+          </a>
+        </div>
+        <div class="vilya-card-wrapper">
+          <div id="vilya-card-new-badge" class="vilya-card-new-badge"></div>
+        <a class="proj-card proj-card--wide js-open-vilya">
+          <div class="proj-card-hover-panel"><!-- pixel name injected here by JS --></div>
+          <div class="proj-card-info-overlay">
+            <div class="pci-row"><span class="pci-label">YEAR</span><span class="pci-val">2026</span></div>
+            <div class="pci-row"><span class="pci-label">DURATION</span><span class="pci-val">5 days</span></div>
+            <div class="pci-row"><span class="pci-label">TYPE</span><span class="pci-val">Branding, Graphic Design, Visual Design</span></div>
+          </div>
+          <iframe class="vilya-card-preview" src="Vilya motion/index-b.html?card=1" tabindex="-1" scrolling="no" title="Vilya project preview"></iframe>
+        </a>
+        </div>
         <a class="proj-card js-open-interact">
           <div class="proj-card-hover-panel"><!-- pixel name injected here by JS --></div>
           <div class="proj-card-info-overlay">
@@ -98,7 +106,7 @@
             <div class="pci-row"><span class="pci-label">SOFTWARE</span><span class="pci-val">Rhinoceros, Figma, Vray, Adobe</span></div>
             <div class="pci-row"><span class="pci-label">SKILLSETS</span><span class="pci-val">Research, CAD, DFM, Prototyping, Rendering, Strategy</span></div>
           </div>
-          <img decoding="async" src="assets/pro-nap/zoom in wearly noth.webp" alt="Pro Nap">
+          <video src="assets/pro nap video.mp4" muted playsinline loop autoplay preload="metadata" aria-label="Pro Nap"></video>
         </a>
         <a class="proj-card js-open-tolean">
           <div class="proj-card-hover-panel"><!-- pixel name injected here by JS --></div>
@@ -115,11 +123,12 @@
       <a href="#" class="carousel-contact-btn carousel-contact-btn--dark js-open-contact">Get in touch</a>
     </section>
 
-  </div>
+    <!-- ═══ INTRO SECTION ═══ -->
+    <section id="intro-section">
+      <div class="intro-slot"></div>
+    </section>
 
-  <!-- ═══ MOBILE FOOTER NOTE ═══ -->
-  <div id="mobile-footer-note">For a better experience, visit from desktop</div>
-  <div id="mobile-year-note">Portfolio <span style="color:#FF2200">2026</span></div>
+  </div>
 
   <!-- ═══ HERO PANEL: PRO NAP ═══ -->
   <div id="hero-panel" aria-modal="true" role="dialog" aria-label="Pro Nap project">
@@ -326,7 +335,7 @@
           <img decoding="async" src="assets/pkit/avenade logo.webp" alt="Avenade" id="pkit-s2-logo" loading="lazy">
           <div id="pkit-s2-copy">
             <h2 id="pkit-s2-title">Client request</h2>
-            <p id="pkit-s2-desc">Design a product-service solution that responds to a specific dependency within the urban context of Milan</p>
+            <p id="pkit-s2-desc">Design a product-service solution that responds to a specific habit that leads to addiction within the urban context of Milan</p>
           </div>
         </div>
       </div>
@@ -618,30 +627,23 @@
         </div>
         <a href="#" class="carousel-contact-btn js-open-contact carousel-contact-btn--dark">Get in touch</a>
       </div>
-      <div id="iact-screen-6">
-        <div id="iact-s6-slideshow">
-          <img decoding="async" src="assets/interact/Profile ev 1.webp" alt="" class="iact-s6-img" loading="lazy">
-          <img decoding="async" src="assets/interact/Profile ev 2.webp" alt="" class="iact-s6-img" loading="lazy">
-          <img decoding="async" src="assets/interact/Profile ev 3.webp" alt="" class="iact-s6-img" loading="lazy">
-          <img decoding="async" src="assets/interact/Profile ev 4.webp" alt="" class="iact-s6-img" loading="lazy">
+      <div id="iact-screen-dev">
+        <div class="iact-dev-inner">
+        <h3 id="iact-dev-title">Development</h3>
+        <p id="iact-dev-note">Hundreds of iterations across layout, interaction, and visual detail shaped the final interface. Every screen was revisited multiple times, refining how the feed balances density and readability, how the profile page prioritizes the content that actually drives behavior, how filters improve discovery.</p>
+        <div class="iact-dev-grid">
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/home ev. 1.webp" alt="Home iteration 1" loading="lazy"><figcaption>ITER. A — FEED v1</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/home ev. 2.webp" alt="Home iteration 2" loading="lazy"><figcaption>ITER. B — FEED v2</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/home ev 3.webp" alt="Home iteration 3" loading="lazy"><figcaption>ITER. C — FEED v3</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/home ev. 4.webp" alt="Home iteration 4" loading="lazy"><figcaption>ITER. D — FEED FINAL</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/Profile ev 1.webp" alt="Profile iteration 1" loading="lazy"><figcaption>PROFILE v1</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/Profile ev 2.webp" alt="Profile iteration 2" loading="lazy"><figcaption>PROFILE v2</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/Profile ev 3.webp" alt="Profile iteration 3" loading="lazy"><figcaption>PROFILE v3</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/Profile ev 4.webp" alt="Profile iteration 4" loading="lazy"><figcaption>PROFILE FINAL</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/filters ev 1.webp" alt="Filters iteration 1" loading="lazy"><figcaption>FILTERS v1</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/filters ev 1-2.webp" alt="Filters iteration 2" loading="lazy"><figcaption>FILTERS v2</figcaption></figure>
+          <figure class="iact-probe"><img decoding="async" src="assets/interact/filters ev 1-1.webp" alt="Filters iteration 3" loading="lazy"><figcaption>FILTERS FINAL</figcaption></figure>
         </div>
-        <div id="iact-s5-text">
-          <p>Hundreds of iterations across layout, interaction, and visual detail shaped the final interface. Every screen was revisited multiple times, refining how the feed balances density and readability, how the profile page prioritizes the content that actually drives behavior, how filters improve discovery. The result is a system that absorbed continuous change while keeping its core interaction model intact.</p>
-        </div>
-      </div>
-      <div id="iact-screen-5">
-        <div id="iact-s5-slideshow">
-          <img decoding="async" src="assets/interact/home ev. 1.webp" alt="" class="iact-s5-img" loading="lazy">
-          <img decoding="async" src="assets/interact/home ev. 2.webp" alt="" class="iact-s5-img" loading="lazy">
-          <img decoding="async" src="assets/interact/home ev 3.webp"  alt="" class="iact-s5-img" loading="lazy">
-          <img decoding="async" src="assets/interact/home ev. 4.webp" alt="" class="iact-s5-img" loading="lazy">
-        </div>
-      </div>
-      <div id="iact-screen-7">
-        <div id="iact-s7-slideshow">
-          <img decoding="async" src="assets/interact/filters ev 1.webp"   alt="" class="iact-s7-img" loading="lazy">
-          <img decoding="async" src="assets/interact/filters ev 1-2.webp" alt="" class="iact-s7-img" loading="lazy">
-          <img decoding="async" src="assets/interact/filters ev 1-1.webp" alt="" class="iact-s7-img" loading="lazy">
         </div>
       </div>
       <div id="iact-screen-4">
@@ -810,6 +812,16 @@
     <button id="tolean-lightbox-close" aria-label="Close">✕</button>
     <button id="tolean-lightbox-prev" aria-label="Previous">&#8592;</button>
     <button id="tolean-lightbox-next" aria-label="Next">&#8594;</button>
+  </div>
+
+  <!-- ═══ FLEA MOTION PANEL ═══ -->
+  <div id="flea-panel" aria-modal="true" role="dialog" aria-label="Flea Motion project">
+    <iframe id="flea-frame" src="" title="Flea Motion" allowfullscreen></iframe>
+  </div>
+
+  <!-- ═══ VILYA PANEL ═══ -->
+  <div id="vilya-panel" aria-modal="true" role="dialog" aria-label="Vilya project">
+    <iframe id="vilya-frame" src="" title="Vilya — Liquid Halftone Motion" allowfullscreen></iframe>
   </div>
 
   <!-- ═══ ABOUT PANEL ═══ -->
@@ -990,12 +1002,12 @@
   <!-- ═══ SCRIPTS ═══ -->
   <script defer src="js/lazy-videos.js?v=3"></script>
   <script defer src="js/svg-loader.js?v=130"></script>
-  <script defer src="js/pixel-logo.js?v=139"></script>
+  <script defer src="js/pixel-logo.js?v=140"></script>
   <script defer src="js/scroll-carousel.js?v=3"></script>
   <script defer src="js/pkit-ux-carousel.js?v=1"></script>
-  <script defer src="js/intro.js?v=143"></script>
+  <script defer src="js/intro.js?v=146"></script>
   <script defer src="js/about-typewriter.js?v=6"></script>
-  <script defer src="js/hero-panel.js?v=147"></script>
+  <script defer src="js/hero-panel.js?v=148"></script>
   <script defer src="js/slideshow-observer.js?v=1"></script>
   <script defer src="js/flow-field.js?v=1"></script>
   <script defer src="js/particles.js?v=200"></script>

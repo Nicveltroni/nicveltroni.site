@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_2" data-name="Livello 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 263.55 220.66">
+  <defs>
+    <filter id="metallic-light" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feFlood flood-color="#303030" result="base"/>
+      <feComposite in="base" in2="SourceAlpha" operator="in" result="shape"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur1"/>
+      <feOffset in="blur1" dx="-1.5" dy="-1.5" result="offsetHi"/>
+      <feComposite in="SourceAlpha" in2="offsetHi" operator="out" result="hiEdge"/>
+      <feFlood flood-color="#666666" flood-opacity="0.7" result="hiColor"/>
+      <feComposite in="hiColor" in2="hiEdge" operator="in" result="highlight"/>
+      <feOffset in="blur1" dx="1.5" dy="1.5" result="offsetSh"/>
+      <feComposite in="SourceAlpha" in2="offsetSh" operator="out" result="shEdge"/>
+      <feFlood flood-color="#000000" flood-opacity="0.6" result="shColor"/>
+      <feComposite in="shColor" in2="shEdge" operator="in" result="shadow"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="specBlur"/>
+      <feSpecularLighting in="specBlur" surfaceScale="4" specularConstant="1.2" specularExponent="25" result="specLight">
+        <fePointLight x="-100" y="-200" z="350"/>
+      </feSpecularLighting>
+      <feComposite in="specLight" in2="SourceAlpha" operator="in" result="specClipped"/>
+      <feMerge>
+        <feMergeNode in="shape"/>
+        <feMergeNode in="highlight"/>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="specClipped"/>
+      </feMerge>
+      <feComposite in2="SourceAlpha" operator="in"/>
+    </filter>
+  </defs>
+  <g id="Livello_1-2" data-name="Livello 1" filter="url(#metallic-light)">
+    <rect fill="#000" x="225.68" y="11.34" width="25.81" height="49.92" rx="5.5" ry="5.5" transform="translate(274.88 -202.28) rotate(90)"/>
+    <rect fill="#000" x="12.34" y="131.89" width="25.81" height="50.49" rx="5.5" ry="5.5" transform="translate(182.38 131.89) rotate(90)"/>
+    <path fill="#000" d="M188.38,43.67v-12.36c0-3.04-2.46-5.5-5.5-5.5h-14.81c-3.04,0-5.5,2.46-5.5,5.5v12.36c0,3.04-2.46,5.5-5.5,5.5h-52.33c-6.08,0-11,4.92-11,11v52.75c0,3.04-2.46,5.5-5.5,5.5h-32.25c-3.04,0-5.5,2.46-5.5,5.5v14.81c0,3.04,2.46,5.5,5.5,5.5h32.25c3.04,0,5.5,2.46,5.5,5.5v40.62c0,3.04,2.46,5.5,5.5,5.5h14.81c3.04,0,5.5-2.46,5.5-5.5v-40.62c0-3.04,2.46-5.5,5.5-5.5h52.33c6.08,0,11-4.92,11-11v-60.9c0-3.04,2.46-5.5,5.5-5.5h14.24c3.04,0,5.5-2.46,5.5-5.5v-6.66c0-3.04-2.46-5.5-5.5-5.5h-14.24c-3.04,0-5.5-2.46-5.5-5.5ZM157.07,74.98c3.04,0,5.5,2.46,5.5,5.5v32.44c0,3.04-2.46,5.5-5.5,5.5h-32.14c-3.04,0-5.5-2.46-5.5-5.5v-32.44c0-3.04,2.46-5.5,5.5-5.5h32.14Z"/>
+    <rect fill="#000" x="136.75" y="0" width="25.81" height="25.81" rx="5.5" ry="5.5" transform="translate(162.57 -136.75) rotate(90)"/>
+    <rect fill="#000" x="119.55" y="194.85" width="25.81" height="25.81" rx="5.5" ry="5.5"/>
+  </g>
+</svg>
