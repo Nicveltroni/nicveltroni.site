@@ -164,7 +164,7 @@ body.theme-light #logo-mount svg:not(.spray) {
   font-size: 2em;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .hud--tr, .hud--br { display: none; }
 }
 
@@ -226,8 +226,25 @@ body.theme-light .theme-toggle__icon--sun { opacity: 1; }
 
 body.theme-light .theme-toggle__thumb { left: calc(100% - 0.16em - 0.98em); }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .theme-toggle { display: none; }
+
+  /* logo lockup: impila verticalmente e scala per non uscire dalla viewport */
+  #logo-lockup {
+    flex-direction: column;
+    align-items: center;
+    transform: none;
+    gap: 16px;
+  }
+
+  #logo-mount {
+    width: min(55vw, 200px);
+  }
+
+  .logo-text {
+    height: min(10vw, 48px);
+    margin-left: 0;
+  }
 }
 
 /* ---------- theme transition (circular reveal) ---------- */

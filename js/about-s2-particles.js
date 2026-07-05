@@ -30,14 +30,11 @@
     getMouse: function () { return { x: mouseX, y: mouseY }; }
   });
 
-  var observer = new MutationObserver(function () {
-    if (section.style.display !== 'none' && section.style.opacity !== '0') {
-      field.start();
-    } else {
-      field.stop();
-    }
-  });
-  observer.observe(section, { attributes: true, attributeFilter: ['style'] });
+  // Sezione ora sempre nel flusso normale della pagina (no più overlay
+  // toggled via display/opacity): start/stop sono guidati dall'apertura
+  // e chiusura del pannello About, vedi js/about-typewriter.js.
+  window._aboutS2ParticlesStart = function () { field.start(); };
+  window._aboutS2ParticlesStop  = function () { field.stop(); };
 
   window.addEventListener('resize', function () {
     if (field.isRunning()) field.resize();

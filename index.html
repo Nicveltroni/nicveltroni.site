@@ -10,11 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Fragment+Mono:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin>
   <link href="https://fonts.cdnfonts.com/css/chantal" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=406">
+  <link rel="stylesheet" href="style.css?v=426">
   <script>
     (function () {
       var h = location.hash.replace('#', '');
-      if (h === 'pronap' || h === 'pkit' || h === 'interact' || h === 'tolean' || h === 'flea') {
+      if (h === 'pronap' || h === 'pkit' || h === 'interact' || h === 'tolean' || h === 'flea' || h === 'about') {
         document.documentElement.classList.add('panel-preload');
       }
     })();
@@ -120,12 +120,12 @@
           <img decoding="async" src="assets/tolean.webp" alt="Tolean">
         </a>
       </div>
-      <a href="#" class="carousel-contact-btn carousel-contact-btn--dark js-open-contact">Get in touch</a>
     </section>
 
     <!-- ═══ INTRO SECTION ═══ -->
     <section id="intro-section">
       <div class="intro-slot"></div>
+      <a href="#" class="carousel-contact-btn carousel-contact-btn--dark js-open-contact">Get in touch</a>
     </section>
 
   </div>
@@ -829,7 +829,14 @@
     <button id="about-back" aria-label="Back"><img decoding="async" src="icons/back.svg" alt="Back"></button>
     <div id="about-scroller">
 
-      <!-- Screen 1: Photo + Intro -->
+      <!-- Section 1: Big quote alone -->
+      <div id="about-hero">
+        <blockquote id="about-quote">
+          <strong>I'm a designer who builds</strong>. I'm fascinated by how <strong>the designer's role is shifting</strong> from creative support to full execution, with the freedom to take <strong>complete ownership of a product end-to-end</strong>. This approach intersects with a rigorous <strong>focus on human experience</strong>. Making sure every product carries a strong <strong>meaning, visual identity, and storytelling</strong>.
+        </blockquote>
+      </div>
+
+      <!-- Section 2: Photo + role + Current Focus + Areas of Exploration -->
       <div id="about-screen-1">
         <div id="about-photo-col">
           <img decoding="async" src="assets/nic foto profilo portfolio.webp" alt="Nic Veltroni" id="about-photo" loading="lazy">
@@ -837,13 +844,9 @@
         <div id="about-text-col">
           <div id="about-content">
             <div id="about-pixel-title"></div>
-            <p id="about-role">Product Designer · 22 yrs. Based in Berlin</p>
+            <p id="about-role"><strong>Product Designer</strong> · 22 yrs. Based in <strong>Berlin</strong></p>
 
-            <!-- Corpo testo che scompare -->
             <div id="about-content-body">
-              <blockquote id="about-quote">
-                I am a designer who builds. I am fascinated by how <strong>the designer's role is shifting</strong> from creative support to full execution. With new technologies, such as <strong>AI-driven prototyping</strong>, I can transform bold concepts into <strong>fully functional, end-to-end products</strong>. I combine this technical agility with a rigorous focus on <strong>meaning, visual identity, and storytelling</strong>, ensuring that every product carries a compelling narrative that brings new value to people's everyday lives.              </blockquote>
-
               <div class="about-section">
                 <p class="about-section-label">Current Focus</p>
                 <p class="about-section-body"><strong>AI &amp; Direct Deliverability:</strong> Exploring AI-driven prototyping to build fully functional, end-to-end products from scratch.</p>
@@ -854,19 +857,20 @@
                 <p class="about-section-label">Areas of Exploration</p>
                 <div id="about-disciplines">
                   <span class="about-tag">Product Design</span>
-                  <span class="about-tag">UX/UI Design</span>
                   <span class="about-tag">Branding</span>
-                  <span class="about-tag">Service Design</span>
                   <span class="about-tag">Startup</span>
                   <span class="about-tag">Speculative Research</span>
-                  <span class="about-tag">Artificial Intelligence</span>
+                  <span class="about-tag">AI</span>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <!-- Sezione 2 che appare al posto del corpo testo -->
-            <div id="about-section-2">
-              <div class="about-s2-3col">
+      <!-- Section 3: Skills & Tools / Experience / Education -->
+      <div id="about-section-2">
+        <div class="about-s2-3col">
 
                 <!-- Colonna 1: Skills & Tools (stacked) -->
                 <div class="about-s2-col-left">
@@ -962,13 +966,7 @@
                 </div>
 
               </div>
-            </div>
-
-          </div>
-        </div>
       </div>
-      <p id="about-continua">Continue<span id="about-continua-dots"></span></p>
-      <p id="about-back-s1">Back<span id="about-back-dots"></span></p>
       <a href="#" id="about-contact-btn" class="js-open-contact">Get in touch</a>
 
     </div>
@@ -1005,15 +1003,14 @@
   <script defer src="js/pixel-logo.js?v=140"></script>
   <script defer src="js/scroll-carousel.js?v=3"></script>
   <script defer src="js/pkit-ux-carousel.js?v=1"></script>
-  <script defer src="js/intro.js?v=146"></script>
-  <script defer src="js/about-typewriter.js?v=6"></script>
-  <script defer src="js/hero-panel.js?v=148"></script>
+  <script defer src="js/intro.js?v=152"></script>
+  <script defer src="js/about-typewriter.js?v=8"></script>
+  <script defer src="js/hero-panel.js?v=149"></script>
   <script defer src="js/slideshow-observer.js?v=1"></script>
   <script defer src="js/flow-field.js?v=1"></script>
   <script defer src="js/particles.js?v=200"></script>
   <script defer src="js/others-particles.js?v=200"></script>
   <script defer src="js/about-particles.js?v=200"></script>
-  <script defer src="js/about-s2-particles.js?v=1"></script>
   <script defer src="js/contact-panel.js?v=1"></script>
   <script defer src="js/contact-particles.js?v=200"></script>
   <script>

@@ -32,10 +32,9 @@
     })();
   }
 
-  // Thin filler text helper (weight 200)
+  // Filler text helper — weight/color come from .intro-thin in style.css
   function t(parent, text, speed, done) {
     var sp = document.createElement('span');
-    sp.style.fontWeight = '200';
     sp.className = 'intro-thin';
     parent.appendChild(sp);
     typeInto(sp, text, speed, done);
@@ -126,11 +125,11 @@
     h.style.whiteSpace = 'nowrap';
 
     var line1 = document.createElement('span');
-    line1.style.fontWeight = '400';
+    line1.className = 'intro-thin';
     h.appendChild(line1);
 
     seq([
-      function (n) { typeInto(line1, "Hi! I'm Nic, a ", TYPE_SLOW, n); },
+      function (n) { typeInto(line1, "Hi I'm Nic, a ", TYPE_SLOW, n); },
       function () {
         boldItalic(h, 'Product Designer.', function () {
           var id = runId;
@@ -146,16 +145,12 @@
     p.className = 'intro-para';
     slot.appendChild(p);
     seq([
-      function (n) { t(p, "I'm a ", TYPE_FAST, n); },
-      function (n) { boldItalic(p, 'full stack creative', n); },
-      function (n) { t(p, ', I ', TYPE_FAST, n); },
-      function (n) { italic(p, 'design', n); },
-      function (n) { t(p, ' from ', TYPE_FAST, n); },
-      function (n) { boldItalic(p, 'the vision', n); },
-      function (n) { t(p, ' to ', TYPE_FAST, n); },
-      function (n) { boldItalic(p, 'the detail', n); },
-      function (n) { t(p, ' of a', TYPE_FAST, n); },
-      function (n) { italic(p, 'project', n); },
+      function (n) { t(p, "I'm an aspiring ", TYPE_FAST, n); },
+      function (n) { boldItalic(p, 'full-stack creative and builder', n); },
+      function (n) { t(p, ' who ', TYPE_FAST, n); },
+      function (n) { italic(p, 'loves', n); },
+      function (n) { t(p, ' making ', TYPE_FAST, n); },
+      function (n) { boldItalic(p, 'products of my own', n); },
       function (n) { t(p, '.', TYPE_FAST, function () {
         var id = runId;
         setTimeout(function () { if (runId !== id) return; done(); }, 2200);
@@ -169,18 +164,10 @@
     p.className = 'intro-para';
     slot.appendChild(p);
 
-    // First line: "I'm focused on HUMAN EXPERIENCE" — forced single line, centered
-    var line1 = document.createElement('span');
-    line1.style.cssText = 'white-space:nowrap;display:block;text-align:center;';
-    p.appendChild(line1);
-
     seq([
-      function (n) { t(line1, "I'm ", TYPE_FAST, n); },
-      function (n) { italic(line1, 'focused', n); },
-      function (n) { t(line1, ' on ', TYPE_FAST, n); },
-      function (n) { boldItalic(line1, 'human experience', n); },
-      function (n) { t(line1, ':', TYPE_FAST, n); },
-      function (n) { t(p, 'how ', TYPE_FAST, n); },
+      function (n) { t(p, "I'm particularly ", TYPE_FAST, n); },
+      function (n) { italic(p, 'interested', n); },
+      function (n) { t(p, ' in how ', TYPE_FAST, n); },
       function (n) { boldItalic(p, 'brands', n); },
       function (n) { t(p, ' and ', TYPE_FAST, n); },
       function (n) { boldItalic(p, 'products', n); },
@@ -228,10 +215,13 @@
   var section = document.getElementById('intro-section');
   if (!pageScroll || !section) return;
 
-  pageScroll.addEventListener('scroll', function () {
+  function checkTrigger() {
     var rect = section.getBoundingClientRect();
     var out  = rect.bottom <= 0 || rect.top >= window.innerHeight;
-    var inView = rect.top < window.innerHeight * 0.5 && rect.bottom > 0;
+    // Fire as soon as the section starts entering from the bottom (top within
+    // the lower 90% of the viewport) so the text is already animating by the
+    // time the section is centered.
+    var inView = rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
 
     if (out && triggered) {
       triggered = false; cooldown = true;
@@ -243,7 +233,7 @@
         // Free scroll: user may have settled into intro during the cooldown
         // with no further scroll event to retrigger — check now
         var r = section.getBoundingClientRect();
-        if (!triggered && r.top < window.innerHeight * 0.5 && r.bottom > 0) {
+        if (!triggered && r.top < window.innerHeight * 0.9 && r.bottom > 0) {
           triggered = true; run();
         }
       }, 600);
@@ -251,7 +241,14 @@
     if (inView && !triggered && !cooldown) {
       triggered = true; run();
     }
-  }, { passive: true });
+  }
+
+  pageScroll.addEventListener('scroll', checkTrigger, { passive: true });
+  window.addEventListener('resize', checkTrigger, { passive: true });
+  // Start even if the section is already in view on load (e.g. the browser
+  // restored the scroll position on reload). The scroll listener alone would
+  // never fire in that case, leaving the text blank.
+  checkTrigger();
 
   // Mobile: la pagina ora scorre normalmente, quindi il trigger
   // via scroll qui sopra copre anche i viewport ≤768px.
