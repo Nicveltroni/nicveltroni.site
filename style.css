@@ -201,16 +201,20 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
 }
 
 #contact-btn-row {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  right: 0;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   padding: 0 42px 40px;
   width: 100%;
+  pointer-events: none;
 }
 
 #contact-btn-row .carousel-contact-btn {
   position: static;
+  pointer-events: auto;
 }
 
 .intro-slot {
