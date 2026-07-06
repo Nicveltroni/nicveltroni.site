@@ -194,27 +194,21 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
 #intro-section {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   min-height: 55vh;
-  padding: 24px 48px 24px;
+  padding: 24px 48px 40px;
 }
 
 #contact-btn-row {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  padding: 0 42px 40px;
-  width: 100%;
-  pointer-events: none;
+  justify-content: flex-start;
+  padding: 24px 0 0;
 }
 
 #contact-btn-row .carousel-contact-btn {
   position: static;
-  pointer-events: auto;
 }
 
 .intro-slot {
