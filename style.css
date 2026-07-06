@@ -200,6 +200,19 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   padding: 24px 48px 24px;
 }
 
+#contact-btn-row {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0 42px 40px;
+  width: 100%;
+}
+
+#contact-btn-row .carousel-contact-btn {
+  position: static;
+}
+
 .intro-slot {
   max-width: 900px;
   width: 90%;
@@ -3934,7 +3947,10 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   /* ══ 0. GUARDIE GLOBALI ══ */
   body { height: 100dvh; }
   a, button { -webkit-tap-highlight-color: transparent; }
-  #page-scroll { overflow-x: hidden; }
+  #page-scroll { overflow-x: hidden; display: flex; flex-direction: column; }
+  #intro-section { order: 1; }
+  #carousel-section { order: 2; }
+  #contact-btn-row { display: flex; justify-content: center; padding: 0 24px 48px; }
 
   /* ══ 1. HEADER — solo logo; la nav vive nella toolbar in basso ══ */
   header {
@@ -3985,10 +4001,10 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   /* ══ 4. HOME — intro (typewriter) ══ */
   #intro-section {
     height: auto;
-    min-height: 70vh;
+    min-height: auto;
     flex-direction: column;
     gap: 32px;
-    padding: 32px 24px 24px;
+    padding: 32px 24px 16px;
   }
   .intro-heading { font-size: 26px; line-height: 1.45; }
   .intro-para    { font-size: 21px; line-height: 1.55; }
@@ -4000,8 +4016,9 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
     min-height: 100svh;
     height: auto;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 44px;
-    padding: 84px 20px calc(120px + env(safe-area-inset-bottom));
+    padding: 24px 20px calc(80px + env(safe-area-inset-bottom));
   }
   .projects-grid {
     grid-template-columns: 1fr;

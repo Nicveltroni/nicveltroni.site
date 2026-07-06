@@ -580,6 +580,9 @@
     hash:    'flea',
     onAfterOpen: function () {
       document.body.classList.add('flea-open');
+      if (IS_MOBILE) {
+        document.querySelectorAll('.vilya-card-preview').forEach(function (f) { f.src = 'about:blank'; });
+      }
       if (fleaFrame) fleaFrame.src = 'flea motion/index.html';
     },
     onClose: function () {
@@ -598,6 +601,9 @@
     hash:    'vilya',
     onAfterOpen: function () {
       document.body.classList.add('vilya-open');
+      if (IS_MOBILE) {
+        document.querySelectorAll('.vilya-card-preview').forEach(function (f) { f.src = 'about:blank'; });
+      }
       if (vilyaFrame) vilyaFrame.src = 'Vilya motion/index-b.html';
     },
     onClose: function () {
@@ -858,16 +864,9 @@
     });
   })();
 
-  // ── Ripristina il pannello dall'URL hash al refresh ──
+  // ── Pulisce l'hash all'avvio senza riaprire pannelli ──
   (function () {
-    var hash = location.hash.replace('#', '');
-    if      (hash === 'flea')     flea.open();
-    else if (hash === 'vilya')    vilya.open();
-    else if (hash === 'pronap')   proNap.open();
-    else if (hash === 'pkit')     pkit.open();
-    else if (hash === 'interact') iact.open();
-    else if (hash === 'tolean')   tolean.open();
-    else if (hash === 'about')    openAbout();
+    if (location.hash) history.replaceState(null, '', location.pathname);
     document.documentElement.classList.remove('panel-preload');
   })();
 
