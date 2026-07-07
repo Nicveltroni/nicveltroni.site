@@ -3947,9 +3947,12 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   a, button { -webkit-tap-highlight-color: transparent; }
   body { overflow-x: hidden; }
   #page-scroll { overflow-x: hidden; display: flex; flex-direction: column; }
-  #intro-section { order: 1; }
-  #carousel-section { order: 2; }
-  #contact-btn-row { order: 3; display: flex; justify-content: center; padding: 0 24px calc(80px + env(safe-area-inset-bottom)); }
+  /* flex-shrink:0 — senza questo flexbox comprime le sezioni fino al loro
+     min-height per farle stare nel viewport invece di scrollare, e il
+     contenuto reale (card progetti) trabocca visivamente oltre la box */
+  #intro-section { order: 1; flex-shrink: 0; }
+  #carousel-section { order: 2; flex-shrink: 0; }
+  #contact-btn-row { order: 3; flex-shrink: 0; display: flex; justify-content: center; padding: 0 24px calc(80px + env(safe-area-inset-bottom)); }
 
   /* ══ 1. HEADER — solo logo; la nav vive nella toolbar in basso ══ */
   header {
