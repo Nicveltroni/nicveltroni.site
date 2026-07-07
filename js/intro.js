@@ -11,6 +11,33 @@
   var TYPE_FAST = 32;  // body paragraphs
   var TYPE_INFLATE = 38; // PRODUCT DESIGNER / HUMAN EXPERIENCE morph
 
+  // ── Mobile: lock slot height to the tallest of the 3 screens so the
+  //    typewriter never reflows the layout below it. Must mirror the final
+  //    text of typeHeading/typePara1/typePara2 below. ──
+  var mobileMQ = window.matchMedia('(max-width: 768px)');
+  var SCREEN_MARKUP = [
+    '<h1 class="intro-heading"><span class="intro-thin">Hi I\'m Nic, a </span><span class="intro-bold-italic">Product Designer.</span></h1>',
+    '<p class="intro-para"><span class="intro-thin">I\'m an aspiring </span><span class="intro-bold-italic">full-stack creative and builder</span><span class="intro-thin"> who </span><span class="intro-italic">loves</span><span class="intro-thin"> making </span><span class="intro-bold-italic">products of my own</span><span class="intro-thin">.</span></p>',
+    '<p class="intro-para"><span class="intro-thin">I\'m particularly </span><span class="intro-italic">interested</span><span class="intro-thin"> in how </span><span class="intro-bold-italic">brands</span><span class="intro-thin"> and </span><span class="intro-bold-italic">products</span><span class="intro-thin"> enter people\'s daily lives and </span><span class="intro-italic">shape </span><span class="intro-bold-italic">culture, space and identity</span><span class="intro-thin">.</span></p>'
+  ];
+  function lockSlotHeight() {
+    if (!mobileMQ.matches) { slot.style.minHeight = ''; return; }
+    var prevHTML = slot.innerHTML;
+    var prevVisibility = slot.style.visibility;
+    slot.style.minHeight = '';
+    slot.style.visibility = 'hidden';
+    var max = 0;
+    SCREEN_MARKUP.forEach(function (html) {
+      slot.innerHTML = html;
+      if (slot.scrollHeight > max) max = slot.scrollHeight;
+    });
+    slot.innerHTML = prevHTML;
+    slot.style.minHeight = max + 'px';
+    slot.style.visibility = prevVisibility;
+  }
+  lockSlotHeight();
+  window.addEventListener('resize', lockSlotHeight, { passive: true });
+
   var triggered = false, cooldown = false;
   var flickerTimer = null, flickerPxs = [];
   var runId = 0;
