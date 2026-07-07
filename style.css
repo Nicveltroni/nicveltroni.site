@@ -3964,6 +3964,10 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   nav { display: none; }
   .based-in-wrap { display: none; }
   .mobile-contact-btn { display: none; }
+  /* niente video hero su mobile: il mix-blend-mode:difference (pensato per
+     restare leggibile sul video) rende il pixel nero invisibile sullo
+     sfondo bianco fisso del sito — disattivato */
+  header.hero-nav { mix-blend-mode: normal; }
   header.hero-nav .header-pixel { display: flex; opacity: 1; }
   .header-pixel svg { height: 12px; }
 
