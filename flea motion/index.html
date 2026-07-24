@@ -117,11 +117,12 @@
   <script>
   // ---------- Config ----------
   const BG = 0xededeb;
-  if (new URLSearchParams(location.search).get('card') === '1') {
+  const IS_CARD = new URLSearchParams(location.search).get('card') === '1';
+  if (IS_CARD) {
     document.getElementById('flea-nav').style.display = 'none';
   }
 
-  const NUM_CARDS = 100;          // quante card nello spazio (max consigliato: numero immagini)
+  const NUM_CARDS = IS_CARD ? 24 : 100;  // quante card nello spazio (preview thumbnail ne usa meno)
   const CARD_BASE = 0.85;        // dimensione base (lato lungo) di una card
 
   // ---------- Renderer / Scene / Camera ----------
@@ -294,11 +295,22 @@
     const placedPositions = [];
     const spreadX = 23, spreadY = 13, spreadZ = 6.5;
     const MIN_DIST = 1.0;
+
+    // Sceglie tutti gli indici prima, poi carica le texture in parallelo
+    // (non una alla volta): con NUM_CARDS immagini distinte, aspettarle in
+    // sequenza moltiplicava il tempo di primo caricamento per il numero di card.
+    const indices = [];
     for (let i = 0; i < NUM_CARDS; i++){
-      const t = i / (NUM_CARDS - 1);          // 0..1 lungo la diagonale
       const idx = drawImageIndex(usedAtStart);
       usedAtStart.add(idx);
-      const { tex: texA, ar } = await loadTexByIndex(idx);
+      indices.push(idx);
+    }
+    await Promise.all(indices.map((idx) => loadTexByIndex(idx)));
+
+    for (let i = 0; i < NUM_CARDS; i++){
+      const t = i / (NUM_CARDS - 1);          // 0..1 lungo la diagonale
+      const idx = indices[i];
+      const { tex: texA, ar } = texCache.get(idx);
 
       const mat = new THREE.ShaderMaterial({
         uniforms: {
