@@ -25,7 +25,6 @@
     last = now;
     if (!reduceMotion) elapsed += dt;
 
-    field.render(elapsed);
     logo.update(reduceMotion ? 0 : dt);
 
     requestAnimationFrame(frame);
