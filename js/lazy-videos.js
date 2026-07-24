@@ -9,7 +9,7 @@
 (function () {
   'use strict';
 
-  var PANEL_IDS = ['hero-panel', 'pkit-panel', 'iact-panel', 'tolean-panel'];
+  var PANEL_IDS = ['carousel-section', 'hero-panel', 'pkit-panel', 'iact-panel', 'tolean-panel'];
   // Start fetching a clip slightly before it enters view for a seamless feel.
   var ROOT_MARGIN = '300px';
 
