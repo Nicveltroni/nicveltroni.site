@@ -305,12 +305,12 @@
       usedAtStart.add(idx);
       indices.push(idx);
     }
-    await Promise.all(indices.map((idx) => loadTexByIndex(idx)));
 
-    for (let i = 0; i < NUM_CARDS; i++){
+    // Ogni card viene piazzata non appena la SUA texture è pronta, invece di
+    // aspettare che tutte le NUM_CARDS immagini finiscano di scaricare: prima
+    // la scena restava vuota finché anche la più lenta del lotto non arrivava.
+    await Promise.all(indices.map((idx, i) => loadTexByIndex(idx).then(({ tex: texA, ar }) => {
       const t = i / (NUM_CARDS - 1);          // 0..1 lungo la diagonale
-      const idx = indices[i];
-      const { tex: texA, ar } = texCache.get(idx);
 
       const mat = new THREE.ShaderMaterial({
         uniforms: {
@@ -356,7 +356,7 @@
         // mentre un cursore la sta trascinando, niente cambio immagine
         dragging: false
       });
-    }
+    })));
   }
 
   // ---------- Cambio immagine istantaneo (asincrono per card, nessun fade) ----------
