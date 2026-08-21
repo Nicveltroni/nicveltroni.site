@@ -1624,7 +1624,8 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   transition: transform 0.3s ease;
 }
 .pkit-other-card:hover { transform: translateY(-4px); }
-.pkit-other-card img {
+.pkit-other-card img,
+.pkit-other-card video {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -2854,7 +2855,8 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   transition: transform 0.3s ease;
 }
 .iact-other-card:hover { transform: translateY(-4px); }
-.iact-other-card img {
+.iact-other-card img,
+.iact-other-card video {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -2919,7 +2921,8 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   transition: transform 0.3s ease;
 }
 .tolean-other-card:hover { transform: translateY(-4px); }
-.tolean-other-card img {
+.tolean-other-card img,
+.tolean-other-card video {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
