@@ -556,13 +556,6 @@
 
   // ── Set up header pixel logo ──
   var hdrPxs = pixelsOf('header-pixel'); hideAll(hdrPxs);
-  var hdrState = {
-    hovered: false,
-    getColor: function () {
-      return document.body.classList.contains('iact-open') ? '#FFDD1A' : '#FF2200';
-    }
-  };
-  attachHoverSweep(document.getElementById('header-pixel'), hdrPxs, hdrState, true);
 
   // ── Base video logo: reveal animation (shared with header) ──
   var revealTimeouts = [];

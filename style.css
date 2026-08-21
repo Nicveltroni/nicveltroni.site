@@ -997,13 +997,11 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 12px;
 }
 .pnr-other-card .proj-card-hover-panel {
   position: absolute;
   bottom: auto; top: 0; left: 0; right: 0;
   height: 100%;
-  border-radius: 12px;
   background: rgba(0,0,0,0.55);
   display: flex;
   align-items: center;
@@ -1630,14 +1628,12 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 12px;
   border: none;
 }
 .pkit-other-card .proj-card-hover-panel {
   position: absolute;
   bottom: auto; top: 0; left: 0; right: 0;
   height: 100%;
-  border-radius: 12px;
   background: rgba(0,0,0,0.55);
   display: flex;
   align-items: center;
@@ -2862,13 +2858,11 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 12px;
 }
 .iact-other-card .proj-card-hover-panel {
   position: absolute;
   bottom: auto; top: 0; left: 0; right: 0;
   height: 100%;
-  border-radius: 12px;
   background: rgba(0,0,0,0.55);
   display: flex;
   align-items: center;
@@ -2929,13 +2923,11 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 12px;
 }
 .tolean-other-card .proj-card-hover-panel {
   position: absolute;
   bottom: auto; top: 0; left: 0; right: 0;
   height: 100%;
-  border-radius: 12px;
   background: rgba(0,0,0,0.55);
   display: flex;
   align-items: center;
