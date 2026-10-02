@@ -82,7 +82,8 @@ body.panel-open header.hero-nav .header-pixel { display: flex; opacity: 1; point
 body.panel-open header.hero-nav nav { margin-left: auto; }
 
 /* Vilya panel: full-screen iframe — hide site navbar entirely */
-body.vilya-open #main-header { display: none; }
+body.vilya-open #main-header,
+body.baltan-open #main-header { display: none; }
 
 /* Panel-open overrides (already white on black bg) */
 body.panel-open #page-scroll {
@@ -3048,6 +3049,23 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   height: 100%;
   border: none;
 }
+#baltan-panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #f2f1ec;
+  overflow: hidden;
+  will-change: transform;
+  transform-origin: center center;
+}
+#baltan-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
 /* ── Tolean Panel ── */
 #tolean-panel {
@@ -4015,7 +4033,7 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
     padding: 24px 20px calc(80px + env(safe-area-inset-bottom));
   }
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 52px;
   }
   .proj-card { gap: 0; }
@@ -4032,7 +4050,7 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
     align-items: flex-start;
   }
   .proj-card .proj-card-pixel-name { text-align: left; }
-  .proj-card .proj-card-pixel-name svg { height: 13px; }
+  .proj-card .proj-card-pixel-name svg { height: 13px; max-width: 100%; }
   /* meta progetto: nascosta su mobile, visibile solo dentro il pannello al tap */
   .proj-card-info-overlay { display: none; }
 

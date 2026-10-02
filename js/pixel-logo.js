@@ -586,7 +586,7 @@
     { sel: '.js-open-pkit',       text: 'P.KIT' },
     { sel: '.js-open-interact',   text: 'INTERACT' },
     { sel: '.js-open-tolean',     text: 'TOLEAN' },
-    { sel: '.js-card-baltan',     text: 'BALTAN LABORATORIES WEBSITE' }
+    { sel: '.js-open-baltan',     text: 'BALTAN LABORATORIES WEBSITE' }
   ];
   CARD_NAMES.forEach(function (item) {
     document.querySelectorAll(item.sel).forEach(function (card) {

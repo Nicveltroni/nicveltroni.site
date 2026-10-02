@@ -612,9 +612,38 @@
     }
   });
 
+  // ══════════════════════════════════════════════
+  //  Baltan Laboratories panel (iframe)
+  // ══════════════════════════════════════════════
+  var baltanPanel = document.getElementById('baltan-panel');
+  var baltanFrame = document.getElementById('baltan-frame');
+  var baltan = makePanel({
+    panel:   baltanPanel,
+    hash:    'baltan',
+    onAfterOpen: function () {
+      document.body.classList.add('baltan-open');
+      if (IS_MOBILE) {
+        document.querySelectorAll('.vilya-card-preview').forEach(function (f) { f.src = 'about:blank'; });
+      }
+      if (baltanFrame) baltanFrame.src = 'baltan/index.html';
+    },
+    onClose: function () {
+      document.body.classList.remove('baltan-open');
+      if (baltanFrame) baltanFrame.src = '';
+    }
+  });
+
   window.addEventListener('message', function (e) {
     if (e.data && e.data.action === 'close-flea' && flea.isOpen()) {
       flea.close();
+      setTimeout(function () {
+        if (pageScroll && carouselEl) {
+          pageScroll.scrollTo({ top: carouselEl.offsetTop, behavior: 'smooth' });
+        }
+      }, 550);
+    }
+    if (e.data && e.data.action === 'close-baltan' && baltan.isOpen()) {
+      baltan.close();
       setTimeout(function () {
         if (pageScroll && carouselEl) {
           pageScroll.scrollTo({ top: carouselEl.offsetTop, behavior: 'smooth' });
@@ -803,6 +832,7 @@
       else if (pkit.isOpen())    { pkit.close();   setTimeout(goToWork, 550); }
       else if (iact.isOpen())    { iact.close();   setTimeout(goToWork, 550); }
       else if (tolean.isOpen())  { tolean.close(); setTimeout(goToWork, 550); }
+      else if (baltan.isOpen())  { baltan.close(); setTimeout(goToWork, 550); }
       else if (isAboutOpen)      { closeAbout();   setTimeout(goToWork, 450); }
       else if (window._isContactOpen && window._isContactOpen()) { window._closeContact(goToWork); }
       else goToWork();
@@ -883,6 +913,7 @@
     else if (a.classList.contains('js-open-pkit'))      target = pkit;
     else if (a.classList.contains('js-open-interact') || a.classList.contains('js-open-iact')) target = iact;
     else if (a.classList.contains('js-open-tolean'))    target = tolean;
+    else if (a.classList.contains('js-open-baltan'))    target = baltan;
     if (!target) return;
 
     function openTarget() { target.open(a); }
@@ -893,6 +924,7 @@
     else if (pkit.isOpen())    { pkit.closeInstant();    target.open(null); }
     else if (iact.isOpen())    { iact.closeInstant();    target.open(null); }
     else if (tolean.isOpen())  { tolean.closeInstant();  target.open(null); }
+    else if (baltan.isOpen())  { baltan.closeInstant();  target.open(null); }
     else openTarget();
   });
 

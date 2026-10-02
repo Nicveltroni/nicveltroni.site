@@ -38,6 +38,23 @@
       white-space: nowrap;
     }
 
+    /* portfolio integration: no wordmark in the grid card preview,
+       a Back button only when opened inside the portfolio panel */
+    .is-card .site-header { display: none; }
+    .site-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .back-btn {
+      display: none;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--fg);
+      background: none; border: none; cursor: pointer;
+      opacity: 0.55; transition: opacity 0.2s;
+      /* bigger tap target without moving the label */
+      padding: 12px; margin: -12px; line-height: 1;
+    }
+    .back-btn:hover { opacity: 1; }
+    .in-panel .back-btn { display: block; }
+
     .intro {
       min-height: 100vh;
       min-height: 100svh;
@@ -55,8 +72,16 @@
   </style>
 </head>
 <body>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      if (/[?&]card=1/.test(location.search)) root.classList.add('is-card');
+      else if (window.parent !== window) root.classList.add('in-panel');
+    })();
+  </script>
   <header class="site-header">
     <p class="logo__text">Baltan Laboratories</p>
+    <button class="back-btn" type="button" onclick="window.parent.postMessage({ action: 'close-baltan' }, '*')">&larr; Back</button>
   </header>
 
   <main>
