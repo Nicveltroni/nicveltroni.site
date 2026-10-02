@@ -585,7 +585,8 @@
     { sel: '.js-open-pronap',     text: 'PRO NAP' },
     { sel: '.js-open-pkit',       text: 'P.KIT' },
     { sel: '.js-open-interact',   text: 'INTERACT' },
-    { sel: '.js-open-tolean',     text: 'TOLEAN' }
+    { sel: '.js-open-tolean',     text: 'TOLEAN' },
+    { sel: '.js-card-baltan',     text: 'BALTAN LABORATORIES WEBSITE' }
   ];
   CARD_NAMES.forEach(function (item) {
     document.querySelectorAll(item.sel).forEach(function (card) {
@@ -607,6 +608,12 @@
   var newProjectBadge = document.getElementById('new-project-new-badge');
   if (newProjectBadge) {
     newProjectBadge.innerHTML = buildSVG('COMING SOON', { fill: '#FF2200' });
+  }
+
+  // ── Baltan card COMING SOON badge ──
+  var baltanBadge = document.getElementById('baltan-card-badge');
+  if (baltanBadge) {
+    baltanBadge.innerHTML = buildSVG('COMING SOON', { fill: '#FF2200' });
   }
 
   // ── Header hero/scroll mode toggle ──
