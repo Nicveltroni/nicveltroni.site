@@ -303,6 +303,9 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
+  /* cards with a badge above them (wrapper padding-top) still line up
+     with their row neighbour: align every row on the card bottoms */
+  align-items: end;
   width: 100%;
   max-width: 900px;
 }
