@@ -4569,3 +4569,11 @@ body.iact-open.screen-white nav a:hover { color: #FF2200; }
   }
 }
 
+
+/* Mobile: no category tags / pins inside the project panels */
+@media (max-width: 768px) {
+  #pnr-tags,
+  #pkit-pins,
+  #iact-project-pins,
+  #tolean-pins { display: none; }
+}

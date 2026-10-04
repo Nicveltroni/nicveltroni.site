@@ -570,6 +570,18 @@
     }
   });
 
+  // On mobile the home card previews (full live pages in iframes) are
+  // unloaded while a project iframe panel is open, to free memory; bring
+  // them back once the panel closes, or the cards stay blank.
+  function unloadCardPreviews() {
+    document.querySelectorAll('.vilya-card-preview').forEach(function (f) { f.src = 'about:blank'; });
+  }
+  function reloadCardPreviews() {
+    document.querySelectorAll('.vilya-card-preview[data-src]').forEach(function (f) {
+      f.src = f.getAttribute('data-src');
+    });
+  }
+
   // ══════════════════════════════════════════════
   //  Flea Motion panel (iframe)
   // ══════════════════════════════════════════════
@@ -580,14 +592,13 @@
     hash:    'flea',
     onAfterOpen: function () {
       document.body.classList.add('flea-open');
-      if (IS_MOBILE) {
-        document.querySelectorAll('.vilya-card-preview').forEach(function (f) { f.src = 'about:blank'; });
-      }
+      if (IS_MOBILE) unloadCardPreviews();
       if (fleaFrame) fleaFrame.src = 'flea motion/index.html';
     },
     onClose: function () {
       document.body.classList.remove('flea-open');
       if (fleaFrame) fleaFrame.src = '';
+      if (IS_MOBILE) reloadCardPreviews();
     }
   });
 
@@ -601,14 +612,13 @@
     hash:    'vilya',
     onAfterOpen: function () {
       document.body.classList.add('vilya-open');
-      if (IS_MOBILE) {
-        document.querySelectorAll('.vilya-card-preview').forEach(function (f) { f.src = 'about:blank'; });
-      }
+      if (IS_MOBILE) unloadCardPreviews();
       if (vilyaFrame) vilyaFrame.src = 'Vilya motion/index-b.html';
     },
     onClose: function () {
       document.body.classList.remove('vilya-open');
       if (vilyaFrame) vilyaFrame.src = '';
+      if (IS_MOBILE) reloadCardPreviews();
     }
   });
 
@@ -622,14 +632,13 @@
     hash:    'baltan',
     onAfterOpen: function () {
       document.body.classList.add('baltan-open');
-      if (IS_MOBILE) {
-        document.querySelectorAll('.vilya-card-preview').forEach(function (f) { f.src = 'about:blank'; });
-      }
+      if (IS_MOBILE) unloadCardPreviews();
       if (baltanFrame) baltanFrame.src = 'baltan/index.html';
     },
     onClose: function () {
       document.body.classList.remove('baltan-open');
       if (baltanFrame) baltanFrame.src = '';
+      if (IS_MOBILE) reloadCardPreviews();
     }
   });
 

@@ -232,17 +232,19 @@ body.theme-light .theme-toggle__thumb { left: calc(100% - 0.16em - 0.98em); }
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    transform: none;
+    /* the mark's SVG carries empty space on its left: nudge the lockup
+       back so the visible logo sits centred in the viewport */
+    transform: translateX(-3vw);
     gap: 0;
     width: 100vw;
   }
 
   #logo-mount {
-    width: min(44vw, 190px);
+    width: min(36vw, 190px);
   }
 
   .logo-text {
-    height: min(16vw, 70px);
+    height: min(13vw, 70px);
     margin-left: -2.6vw;
   }
 }
